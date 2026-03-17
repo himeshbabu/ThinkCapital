@@ -259,17 +259,25 @@
         }
 
         /* Responsive */
-        @media (max-width: 968px) {
-            .values-grid { grid-template-columns: 1fr 1fr; }
-            .leadership-grid { grid-template-columns: 1fr 1fr; }
-            .who-we-serve-grid { grid-template-columns: 1fr 1fr; }
-            .page-hero h1 { font-size: 2.5rem; }
-        }
+        .values-grid        { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.8rem; }
+        .leadership-grid    { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+        .who-we-serve-grid  { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+        .milestones-layout  { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 5vw, 5rem); align-items: start; }
 
-        @media (max-width: 600px) {
-            .values-grid { grid-template-columns: 1fr; }
-            .leadership-grid { grid-template-columns: 1fr; }
+        @media (max-width: 1024px) {
+            .values-grid       { grid-template-columns: repeat(2, 1fr); }
+            .leadership-grid   { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 768px) {
+            .leadership-grid   { grid-template-columns: 1fr 1fr; }
             .who-we-serve-grid { grid-template-columns: 1fr 1fr; }
+            .milestones-layout { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 540px) {
+            .values-grid       { grid-template-columns: 1fr; }
+            .leadership-grid   { grid-template-columns: 1fr; }
+            .who-we-serve-grid { grid-template-columns: 1fr 1fr; }
+            .page-hero h1      { font-size: clamp(1.8rem, 8vw, 2.4rem); }
         }
     </style>
 </head>
@@ -288,9 +296,22 @@
                     <li><a href="#">Contact</a></li>
                 </ul>
             </nav>
-            <a href="#" class="btn" style="padding: 0.6rem 1.5rem; font-size: 0.9rem;">Client Portal</a>
+            <a href="#" class="btn header-cta-btn" style="padding:0.55rem 1.4rem;font-size:0.88rem;">Client Portal</a>
+            <button class="hamburger" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
         </div>
     </header>
+
+    <!-- Mobile Navigation Drawer -->
+    <ul class="mobile-nav" role="menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html" class="active">About Us</a></li>
+        <li><a href="#">Services</a></li>
+        <li><a href="#">Knowledge Bank</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><a href="#" class="mobile-portal-btn">Client Portal</a></li>
+    </ul>
 
     <!-- ══════ PAGE HERO ══════ -->
     <section class="page-hero">
@@ -308,7 +329,7 @@
     <!-- ══════ INTRO ══════ -->
     <section>
         <div class="container">
-            <div class="about-split" style="gap: 6rem;">
+            <div class="about-split">
                 <div class="about-text" style="flex: 1.5;">
                     <div class="section-title">
                         <h2>Our Story</h2>
@@ -443,46 +464,42 @@
     <!-- ══════ MILESTONES ══════ -->
     <section>
         <div class="container">
-            <div style="display: flex; gap: 6rem; align-items: flex-start;">
-                <div style="flex: 1;">
-                    <div class="section-title">
-                        <h2>Our Journey</h2>
-                    </div>
-                    <p>From our founding, Think Capital has grown steadily by building deep client relationships and delivering on complex mandates across India's midmarket. Here are some highlights from our journey.</p>
-                    <p style="color: #666; font-size: 0.95rem;">Based at Nariman Point — Mumbai's financial nerve centre — Think Capital is strategically positioned to access and serve India's most dynamic business ecosystem.</p>
-                    <div style="margin-top: 2rem; padding: 2rem; background: var(--bg-gray); border-radius: 12px;">
-                        <p style="font-weight: 700; color: var(--primary-color); margin-bottom: 0.5rem;">📍 Headquarters</p>
-                        <p style="margin-bottom: 0; font-size: 0.95rem;">1007-13 Dalamal Tower, Free Press Journal Road, 211, Nariman Point, Mumbai – 400 021.</p>
-                        <p style="margin: 0.5rem 0 0; font-size: 0.95rem;">📞 +91 22 6610 0910 – 11 &nbsp;&nbsp;|&nbsp;&nbsp; ✉️ info@thinkcapital.in</p>
+            <div class="milestones-layout">
+                <div>
+                    <div class="section-title"><h2>Our Journey</h2></div>
+                    <p>From our founding, Think Capital has grown steadily by building deep client relationships and delivering on complex mandates across India's midmarket.</p>
+                    <p style="color:#666;font-size:0.95rem;">Based at Nariman Point — Mumbai's financial nerve centre — Think Capital is strategically positioned to serve India's most dynamic business ecosystem.</p>
+                    <div style="margin-top:1.5rem;padding:1.5rem;background:var(--bg-gray);border-radius:12px;">
+                        <p style="font-weight:700;color:var(--primary-color);margin-bottom:0.5rem;">📍 Headquarters</p>
+                        <p style="margin-bottom:0;font-size:0.9rem;">1007-13 Dalamal Tower, Free Press Journal Road, Nariman Point, Mumbai – 400 021.</p>
+                        <p style="margin:0.4rem 0 0;font-size:0.9rem;">📞 +91 22 6610 0910&nbsp;|&nbsp;✉️ info@thinkcapital.in</p>
                     </div>
                 </div>
-                <div style="flex: 1;">
-                    <div class="timeline">
-                        <div class="timeline-item">
-                            <div class="year">Inception</div>
-                            <h4>Founded in Mumbai</h4>
-                            <p>Think Capital established at Nariman Point with a clear mandate: deliver independent, value-driven advisory to India's midmarket.</p>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="year">Early Years</div>
-                            <h4>Building Core Practices</h4>
-                            <p>Launched dedicated Corporate Finance and M&A verticals, completing first marquee transaction and recognizing early success.</p>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="year">Growth Phase</div>
-                            <h4>Insolvency & Restructuring Practice</h4>
-                            <p>Added specialized IBC and restructuring capabilities, becoming a trusted partner for distressed assets and turnaround situations.</p>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="year">2020</div>
-                            <h4>Knowledge & Research Leadership</h4>
-                            <p>Published influential reports on Covid-19 impact on ARC businesses, distressed M&A, and the Indian Economy — establishing thought leadership.</p>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="year">Today</div>
-                            <h4>$500M+ in Deal Value</h4>
-                            <p>A trusted advisory partner across 100+ clients, with a team that leads on the most complex midmarket transactions in India.</p>
-                        </div>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="year">Inception</div>
+                        <h4>Founded in Mumbai</h4>
+                        <p>Think Capital established at Nariman Point with a clear mandate: deliver independent, value-driven advisory to India's midmarket.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="year">Early Years</div>
+                        <h4>Building Core Practices</h4>
+                        <p>Launched dedicated Corporate Finance and M&A verticals, completing first marquee transaction and recognizing early success.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="year">Growth Phase</div>
+                        <h4>Insolvency &amp; Restructuring Practice</h4>
+                        <p>Added specialized IBC and restructuring capabilities, becoming a trusted partner for distressed assets and turnaround situations.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="year">2020</div>
+                        <h4>Knowledge &amp; Research Leadership</h4>
+                        <p>Published influential reports on Covid-19 impact on ARC businesses, distressed M&A, and the Indian Economy.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="year">Today</div>
+                        <h4>$500M+ in Deal Value</h4>
+                        <p>A trusted advisory partner across 100+ clients, leading on the most complex midmarket transactions in India.</p>
                     </div>
                 </div>
             </div>

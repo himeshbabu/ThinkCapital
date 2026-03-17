@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="index.css">
-    <script src="https://kit.fontawesome.com/your-code.js" crossorigin="anonymous"></script>
+
     <style>
         /* ══════ HERO OVERHAUL ══════ */
         .hero {
@@ -358,11 +358,20 @@
             to { opacity: 1; }
         }
 
-        /* ── Responsive ── */
+        /* ── Responsive hero ── */
         @media (max-width: 968px) {
-            .hero-wrapper { flex-direction: column; padding-top: 100px; }
-            .hero-right { width: 100%; margin-top: 2rem; }
-            .stat-badge { display: none; }
+            .hero-wrapper { flex-direction: column; padding-top: 90px; gap: 2rem; }
+            .hero-right   { width: 100%; max-width: 500px; margin: 0 auto; }
+            .stat-badge   { display: none; }
+            .hero-title   { font-size: clamp(2rem, 7vw, 3rem) !important; }
+            .hero-subtitle{ max-width: 100%; }
+        }
+        @media (max-width: 480px) {
+            .hero         { min-height: 100svh; }
+            .hero-badge   { font-size: 0.72rem; padding: 0.35rem 0.9rem; }
+            .hero-cta-row { flex-direction: column; gap: 0.75rem; }
+            .btn-hero-primary, .btn-hero-ghost { justify-content: center; width: 100%; }
+            .hero-trust   { gap: 0.9rem; }
         }
     </style>
 </head>
@@ -380,9 +389,22 @@
                     <li><a href="#">Contact</a></li>
                 </ul>
             </nav>
-            <a href="#" class="btn" style="padding: 0.6rem 1.5rem; font-size: 0.9rem;">Client Portal</a>
+            <a href="#" class="btn header-cta-btn" style="padding:0.55rem 1.4rem;font-size:0.88rem;">Client Portal</a>
+            <button class="hamburger" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
         </div>
     </header>
+
+    <!-- Mobile Navigation Drawer -->
+    <ul class="mobile-nav" role="menu">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="#">Services</a></li>
+        <li><a href="#">Knowledge Bank</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><a href="#" class="mobile-portal-btn">Client Portal</a></li>
+    </ul>
 
     <!-- ══════════════════ MODERN HERO ══════════════════ -->
     <section class="hero" id="hero">
