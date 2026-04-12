@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Insolvency documents and public announcements – Think Capital">
+    <title>Company Documents – Think Capital</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="insolvency.css">
+</head>
+
+<body>
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="index.html#hero" class="nav-logo">
+                <img src="https://thinkcapital.in/wp-content/uploads/2020/12/think_capital_logo.png"
+                    alt="Think Capital Logo">
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html#hero" class="nav-link" data-section="hero">Home</a></li>
+                <li><a href="index.html#about" class="nav-link" data-section="about">About Us</a></li>
+                <li><a href="index.html#advisory-board" class="nav-link" data-section="advisory-board">Advisory Board</a></li>
+                <li><a href="index.html#team" class="nav-link" data-section="team">Professional Team</a></li>
+                <li><a href="index.html#services" class="nav-link" data-section="services">Our Services</a></li>
+                <li><a href="ongoing-insolvency-assignments.html" class="nav-link" data-section="insolvency">Insolvency</a></li>
+                <li><a href="index.html#contact" class="nav-link" data-section="contact">Contact & Careers</a></li>
+            </ul>
+            <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+    <div class="mobile-menu" id="mobileMenu">
+        <ul class="mobile-nav-links">
+            <li><a href="index.html#hero" class="mobile-link" data-section="hero">Home</a></li>
+            <li><a href="index.html#about" class="mobile-link" data-section="about">About Us</a></li>
+            <li><a href="index.html#advisory-board" class="mobile-link" data-section="advisory-board">Advisory Board</a></li>
+            <li><a href="index.html#team" class="mobile-link" data-section="team">Professional Team</a></li>
+            <li><a href="index.html#services" class="mobile-link" data-section="services">Our Services</a></li>
+            <li><a href="ongoing-insolvency-assignments.html" class="mobile-link" data-section="insolvency">Insolvency</a></li>
+            <li><a href="index.html#contact" class="mobile-link" data-section="contact">Contact & Careers</a></li>
+        </ul>
+    </div>
+
+    <!-- ========== PAGE HEADER ========== -->
+    <section class="subpage-hero">
+        <div class="subpage-hero-bg"></div>
+        <div class="container">
+            <nav class="breadcrumb">
+                <a href="index.html">Home</a>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+                <a href="ongoing-insolvency-assignments.html">Insolvency Assignments</a>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+                <span id="breadcrumbCompany">Company</span>
+            </nav>
+            <h1 class="subpage-title" id="pageTitle">Company Name</h1>
+            <p class="subpage-subtitle" id="pageSubtitle">Documents and public announcements related to the proceedings.</p>
+        </div>
+    </section>
+
+    <!-- ========== DOCUMENTS (Dynamic) ========== -->
+    <section class="section documents-section">
+        <div class="container">
+            <div class="back-link-wrap">
+                <a href="ongoing-insolvency-assignments.html" class="back-link">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                    All Assignments
+                </a>
+            </div>
+
+            <div class="documents-grid" id="documentsGrid">
+                <!-- Rendered dynamically -->
+            </div>
+
+            <div id="emptyState" style="display:none;text-align:center;padding:60px 20px;">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#d1d5db" stroke-width="1.2" style="margin-bottom:16px"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                <p style="color:#6b7280;font-size:15px;">No documents have been uploaded for this company yet.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer id="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <img src="https://thinkcapital.in/wp-content/uploads/2020/12/think_capital_logo.png"
+                        alt="Think Capital" class="footer-logo">
+                    <p>1007-13 Dalamal Tower, Free Press Journal Road, 211, Nariman Point, Mumbai – 400 021. MAH</p>
+                    <p><strong>Phone:</strong> +91 22 6610 0910 – 11</p>
+                    <p><strong>Email:</strong> <a href="mailto:info@thinkcapital.in">info@thinkcapital.in</a></p>
+                </div>
+                <div class="footer-links-group">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html#about">About Us</a></li>
+                        <li><a href="index.html#team">Our Team</a></li>
+                        <li><a href="index.html#services">Services</a></li>
+                        <li><a href="ongoing-insolvency-assignments.html">Insolvency</a></li>
+                        <li><a href="index.html#contact">Contact & Careers</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links-group">
+                    <h4>Who We Serve</h4>
+                    <ul>
+                        <li>Corporates</li>
+                        <li>Investors</li>
+                        <li>Banks & Lending Institutions</li>
+                        <li>Special Situation Funds & ARCs</li>
+                    </ul>
+                </div>
+                <div class="footer-links-group">
+                    <h4>What We Do</h4>
+                    <ul>
+                        <li><a href="index.html#services">Corporate Finance</a></li>
+                        <li><a href="ongoing-insolvency-assignments.html">Insolvency & Restructuring</a></li>
+                        <li><a href="index.html#services">Mergers & Acquisitions</a></li>
+                        <li><a href="index.html#services">Management Consultancy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Think Capital. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <button id="backToTop" class="back-to-top" aria-label="Back to top">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="18 15 12 9 6 15" />
+        </svg>
+    </button>
+    
+    <script src="main.js"></script>
+
+    <script src="insolvency-data.js"></script>
+    <script>
+        const DOC_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>';
+        const ARROW_ICON = '<svg class="doc-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';
+
+        function renderPage() {
+            const params = new URLSearchParams(window.location.search);
+            const companyId = params.get('id');
+
+            if (!companyId) {
+                window.location.href = 'ongoing-insolvency-assignments.html';
+                return;
+            }
+
+            const company = getAssignmentById(companyId);
+
+            if (!company) {
+                document.getElementById('pageTitle').textContent = 'Company Not Found';
+                document.getElementById('pageSubtitle').textContent = 'The requested company could not be located.';
+                document.getElementById('breadcrumbCompany').textContent = 'Not Found';
+                document.getElementById('emptyState').style.display = '';
+                return;
+            }
+
+            // If it's external, redirect to the portal
+            if (company.type === 'external' && company.externalUrl) {
+                window.location.href = company.externalUrl;
+                return;
+            }
+
+            // Set page content
+            document.title = company.name + ' – Think Capital';
+            document.getElementById('pageTitle').textContent = company.name;
+            document.getElementById('breadcrumbCompany').textContent = company.name;
+
+            // Set status-specific subtitle
+            const subtitleMap = {
+                'status-cirp': 'Corporate Insolvency Resolution Process (CIRP) – Documents and public announcements related to the resolution proceedings.',
+                'status-liquidation': 'Liquidation Process – Documents and public announcements related to the liquidation proceedings.',
+                'status-external': 'Documents and public announcements related to the insolvency proceedings.'
+            };
+            document.getElementById('pageSubtitle').textContent = subtitleMap[company.statusType] || subtitleMap['status-external'];
+
+            const grid = document.getElementById('documentsGrid');
+            const empty = document.getElementById('emptyState');
+
+            if (!company.documents || !company.documents.length) {
+                grid.style.display = 'none';
+                empty.style.display = '';
+                return;
+            }
+
+            grid.innerHTML = company.documents.map(doc => `
+                <a href="${doc.url}" target="_blank" rel="noopener noreferrer" class="document-item">
+                    <div class="doc-icon">${DOC_ICON}</div>
+                    <div class="doc-info">
+                        <h4>${doc.name}</h4>
+                        <span>PDF Document</span>
+                    </div>
+                    ${ARROW_ICON}
+                </a>
+            `).join('');
+        }
+
+        renderPage();
+    </script>
+</body>
+
+</html>

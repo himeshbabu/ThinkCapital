@@ -1,730 +1,1024 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Think Capital – A leading midmarket investment banking and corporate advisory firm specializing in Corporate Finance, Insolvency & Restructuring, Mergers & Acquisitions, and Management Consultancy.">
+    <meta name="keywords"
+        content="Think Capital, Investment Banking, Corporate Advisory, Corporate Finance, M&A, Insolvency, Restructuring, Management Consultancy">
     <title>Think Capital – Think Ahead To Stay Ahead</title>
-    <meta name="description" content="Think Capital is a leading midmarket investment banking and corporate advisory firm specializing in Corporate Finance, M&A, and Management Consultancy.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="index.css">
-
-    <style>
-        /* ══════ HERO OVERHAUL ══════ */
-        .hero {
-            height: 100vh;
-            min-height: 700px;
-            background: #0f0720;
-            display: flex;
-            align-items: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        #heroCanvas {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-        }
-
-        /* Floating geometric shapes */
-        .hero-shapes { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
-        .shape {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.25;
-            animation: morphFloat 12s ease-in-out infinite alternate;
-        }
-        .shape-1 { width: 500px; height: 500px; background: var(--primary-color); top: -120px; left: -80px; animation-duration: 14s; }
-        .shape-2 { width: 350px; height: 350px; background: var(--accent-teal); bottom: -80px; right: 10%; animation-duration: 10s; animation-delay: -3s; }
-        .shape-3 { width: 220px; height: 220px; background: var(--accent-magenta); top: 30%; left: 45%; animation-duration: 9s; animation-delay: -6s; }
-        .shape-4 { width: 180px; height: 180px; background: #00b4c5; bottom: 20%; left: 20%; animation-duration: 11s; animation-delay: -2s; }
-
-        @keyframes morphFloat {
-            0%   { transform: translate(0,0) scale(1); }
-            50%  { transform: translate(30px, -20px) scale(1.08); }
-            100% { transform: translate(-20px, 15px) scale(0.95); }
-        }
-
-        /* Layout */
-        .hero-wrapper {
-            display: flex;
-            align-items: center;
-            gap: 4rem;
-            position: relative;
-            z-index: 2;
-            padding-top: 80px; /* offset sticky header */
-        }
-
-        .hero-left { flex: 1.2; color: white; }
-        .hero-right { flex: 0.9; position: relative; }
-
-        /* Badge pill above h1 */
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.6rem;
-            background: rgba(255,255,255,0.08);
-            border: 1px solid rgba(255,255,255,0.15);
-            backdrop-filter: blur(10px);
-            border-radius: 50px;
-            padding: 0.4rem 1.2rem;
-            font-size: 0.8rem;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            color: rgba(255,255,255,0.85);
-            margin-bottom: 1.8rem;
-            animation: fadeSlideUp 0.7s ease both;
-        }
-        .badge-dot {
-            width: 8px; height: 8px;
-            background: var(--accent-teal);
-            border-radius: 50%;
-            box-shadow: 0 0 0 3px rgba(0,129,138,0.3);
-            animation: pulseDot 2s ease-in-out infinite;
-        }
-        @keyframes pulseDot {
-            0%, 100% { box-shadow: 0 0 0 3px rgba(0,129,138,0.3); }
-            50%       { box-shadow: 0 0 0 6px rgba(0,129,138,0.1); }
-        }
-
-        /* Headline */
-        .hero-title {
-            font-family: 'Outfit', sans-serif;
-            font-size: clamp(2.4rem, 4.5vw, 4rem);
-            font-weight: 800;
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-            display: flex;
-            flex-direction: column;
-            gap: 0.15em;
-        }
-        .title-line {
-            display: block;
-            opacity: 0;
-            transform: translateY(24px);
-            animation: fadeSlideUp 0.6s ease forwards;
-        }
-        .title-line:nth-child(1) { animation-delay: 0.15s; }
-        .title-line:nth-child(2) { animation-delay: 0.3s; }
-        .title-line:nth-child(3) { animation-delay: 0.45s; }
-        .accent-line { color: var(--accent-teal); }
-
-        .typewriter-wrapper { font-size: clamp(1.4rem, 2.5vw, 2rem); color: rgba(255,255,255,0.65); font-weight: 500; }
-        .typewriter-word { color: var(--accent-magenta); font-weight: 700; }
-        .cursor-blink {
-            display: inline-block;
-            width: 2px;
-            color: var(--accent-teal);
-            animation: blink 0.75s step-end infinite;
-            margin-left: 2px;
-        }
-        @keyframes blink { 50% { opacity: 0; } }
-
-        /* Subtitle */
-        .hero-subtitle {
-            font-size: 1.1rem;
-            color: rgba(255,255,255,0.65);
-            max-width: 520px;
-            line-height: 1.7;
-            margin-bottom: 2.5rem;
-            opacity: 0;
-            animation: fadeSlideUp 0.6s ease 0.6s forwards;
-        }
-
-        /* CTA row */
-        .hero-cta-row {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 2.5rem;
-            opacity: 0;
-            animation: fadeSlideUp 0.6s ease 0.75s forwards;
-        }
-
-        .btn-hero-primary {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.6rem;
-            padding: 0.9rem 2rem;
-            background: var(--accent-teal);
-            color: white;
-            font-weight: 700;
-            font-size: 0.95rem;
-            border-radius: 6px;
-            transition: all 0.3s ease;
-            border: 2px solid var(--accent-teal);
-        }
-        .btn-hero-primary:hover {
-            background: transparent;
-            color: var(--accent-teal);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 30px rgba(0,129,138,0.3);
-        }
-        .btn-hero-primary svg { transition: transform 0.3s ease; }
-        .btn-hero-primary:hover svg { transform: translateX(4px); }
-
-        .btn-hero-ghost {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.75rem;
-            padding: 0.9rem 1.8rem;
-            background: rgba(255,255,255,0.07);
-            color: white;
-            font-weight: 600;
-            font-size: 0.95rem;
-            border-radius: 6px;
-            border: 1px solid rgba(255,255,255,0.18);
-            backdrop-filter: blur(8px);
-            transition: all 0.3s ease;
-        }
-        .btn-hero-ghost:hover { background: rgba(255,255,255,0.14); transform: translateY(-2px); }
-
-        .play-ring {
-            width: 32px; height: 32px;
-            display: flex; align-items: center; justify-content: center;
-            border: 1.5px solid rgba(255,255,255,0.5);
-            border-radius: 50%;
-            flex-shrink: 0;
-            transition: all 0.3s ease;
-        }
-        .btn-hero-ghost:hover .play-ring { border-color: var(--accent-teal); background: var(--accent-teal); }
-
-        /* Trust strip */
-        .hero-trust {
-            display: flex;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-            opacity: 0;
-            animation: fadeSlideUp 0.6s ease 0.9s forwards;
-        }
-        .trust-item {
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
-            font-size: 0.82rem;
-            color: rgba(255,255,255,0.55);
-            font-weight: 500;
-        }
-
-        /* ── Glass card ── */
-        .hero-glass-card {
-            background: rgba(255,255,255,0.07);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255,255,255,0.14);
-            border-radius: 20px;
-            padding: 2rem;
-            color: white;
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeSlideUp 0.7s ease 0.5s forwards;
-            position: relative;
-            z-index: 2;
-        }
-        .glass-card-header {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-            padding-bottom: 1.2rem;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
-        .glass-card-icon {
-            width: 44px; height: 44px;
-            background: linear-gradient(135deg, var(--primary-color), var(--accent-teal));
-            border-radius: 12px;
-            display: flex; align-items: center; justify-content: center;
-            flex-shrink: 0;
-        }
-        .glass-card-label { font-weight: 700; font-size: 0.95rem; margin: 0; }
-        .glass-card-sub { font-size: 0.78rem; color: rgba(255,255,255,0.5); margin: 0; }
-
-        .glass-services-list { display: flex; flex-direction: column; gap: 0.85rem; margin-bottom: 1.5rem; }
-        .glass-service-item {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            padding: 0.7rem 1rem;
-            border-radius: 10px;
-            font-size: 0.9rem;
-            color: rgba(255,255,255,0.7);
-            transition: all 0.2s ease;
-            cursor: default;
-        }
-        .glass-service-item:hover, .glass-service-item.active-service {
-            background: rgba(255,255,255,0.1);
-            color: white;
-        }
-        .service-dot {
-            width: 7px; height: 7px;
-            background: var(--accent-teal);
-            border-radius: 50%;
-            flex-shrink: 0;
-        }
-        .glass-service-item.active-service .service-dot { background: var(--accent-magenta); }
-
-        .glass-cta {
-            display: block;
-            text-align: center;
-            padding: 0.7rem;
-            border: 1px solid rgba(255,255,255,0.2);
-            border-radius: 8px;
-            font-size: 0.88rem;
-            font-weight: 600;
-            color: rgba(255,255,255,0.8);
-            transition: all 0.25s ease;
-        }
-        .glass-cta:hover { background: rgba(255,255,255,0.12); color: white; }
-
-        /* ── Floating stat badges ── */
-        .stat-badge {
-            position: absolute;
-            background: white;
-            border-radius: 14px;
-            padding: 0.75rem 1.2rem;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.25);
-            z-index: 3;
-            animation: floatBadge 4s ease-in-out infinite alternate;
-            opacity: 0;
-        }
-        .badge-a { top: -20px; right: -18px; animation-delay: 1.1s; animation-fill-mode: forwards;
-            animation: badgeIn 0.5s ease 1.1s forwards, floatBadge 4s ease-in-out 1.6s infinite alternate; }
-        .badge-b { bottom: 40px; right: -22px; animation-delay: 1.3s;
-            animation: badgeIn 0.5s ease 1.3s forwards, floatBadge 4s ease-in-out 1.8s infinite alternate; }
-        .badge-c { bottom: -18px; left: 10px; animation-delay: 1.5s;
-            animation: badgeIn 0.5s ease 1.5s forwards, floatBadge 4s ease-in-out 2s infinite alternate; }
-
-        @keyframes badgeIn {
-            from { opacity: 0; transform: scale(0.75) translateY(10px); }
-            to   { opacity: 1; transform: scale(1) translateY(0); }
-        }
-        @keyframes floatBadge {
-            0%   { transform: translateY(0px); }
-            100% { transform: translateY(-8px); }
-        }
-        .badge-num { font-family: 'Outfit', sans-serif; font-size: 1.2rem; font-weight: 800; color: var(--primary-color); line-height: 1; }
-        .badge-text { font-size: 0.7rem; color: #888; font-weight: 500; margin-top: 2px; }
-
-        /* Scroll indicator */
-        .scroll-indicator {
-            position: absolute;
-            bottom: 2.5rem;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.5rem;
-            color: rgba(255,255,255,0.4);
-            font-size: 0.7rem;
-            font-weight: 500;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            z-index: 5;
-            opacity: 0;
-            animation: fadeIn 1s ease 1.5s forwards;
-        }
-        .scroll-line {
-            width: 1.5px;
-            height: 45px;
-            background: rgba(255,255,255,0.15);
-            border-radius: 2px;
-            overflow: hidden;
-            position: relative;
-        }
-        .scroll-dot {
-            width: 100%;
-            height: 30%;
-            background: var(--accent-teal);
-            border-radius: 2px;
-            animation: scrollBounce 1.6s ease-in-out infinite;
-        }
-        @keyframes scrollBounce {
-            0%   { transform: translateY(-100%); }
-            100% { transform: translateY(400%); }
-        }
-
-        @keyframes fadeSlideUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to   { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes fadeIn {
-            to { opacity: 1; }
-        }
-
-        /* ── Responsive hero ── */
-        @media (max-width: 968px) {
-            .hero-wrapper { flex-direction: column; padding-top: 90px; gap: 2rem; }
-            .hero-right   { width: 100%; max-width: 500px; margin: 0 auto; }
-            .stat-badge   { display: none; }
-            .hero-title   { font-size: clamp(2rem, 7vw, 3rem) !important; }
-            .hero-subtitle{ max-width: 100%; }
-        }
-        @media (max-width: 480px) {
-            .hero         { min-height: 100svh; }
-            .hero-badge   { font-size: 0.72rem; padding: 0.35rem 0.9rem; }
-            .hero-cta-row { flex-direction: column; gap: 0.75rem; }
-            .btn-hero-primary, .btn-hero-ghost { justify-content: center; width: 100%; }
-            .hero-trust   { gap: 0.9rem; }
-        }
-    </style>
 </head>
-<body>
 
-    <header>
-        <div class="container">
-            <a href="index.html" class="logo">THINK<span>CAPITAL</span></a>
-            <nav>
-                <ul class="nav-links">
-                    <li><a href="index.html" class="active">Home</a></li>
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="#">Services</a></li>
-                    <li><a href="#">Knowledge Bank</a></li>
-                    <li><a href="#">Contact</a></li>
-                </ul>
-            </nav>
-            <a href="#" class="btn header-cta-btn" style="padding:0.55rem 1.4rem;font-size:0.88rem;">Client Portal</a>
-            <button class="hamburger" aria-label="Toggle menu">
-                <span></span><span></span><span></span>
-            </button>
-        </div>
-    </header>
-
-    <!-- Mobile Navigation Drawer -->
-    <ul class="mobile-nav" role="menu">
-        <li><a href="index.html" class="active">Home</a></li>
-        <li><a href="about.html">About Us</a></li>
-        <li><a href="#">Services</a></li>
-        <li><a href="#">Knowledge Bank</a></li>
-        <li><a href="#">Contact</a></li>
-        <li><a href="#" class="mobile-portal-btn">Client Portal</a></li>
-    </ul>
-
-    <!-- ══════════════════ MODERN HERO ══════════════════ -->
-    <section class="hero" id="hero">
-
-        <canvas id="heroCanvas"></canvas>
-
-        <div class="hero-shapes">
-            <div class="shape shape-1"></div>
-            <div class="shape shape-2"></div>
-            <div class="shape shape-3"></div>
-            <div class="shape shape-4"></div>
-        </div>
-
-        <div class="container hero-wrapper">
-
-            <!-- Left content -->
-            <div class="hero-left" id="heroContent">
-
-                <div class="hero-badge">
-                    <span class="badge-dot"></span>
-                    India's Leading Midmarket Advisory
-                </div>
-
-                <h1 class="hero-title">
-                    <span class="title-line">Think Ahead.</span>
-                    <span class="title-line accent-line">Stay Ahead.</span>
-                    <span class="title-line typewriter-wrapper">Expert <span id="typewriter" class="typewriter-word"></span><span class="cursor-blink">|</span></span>
-                </h1>
-
-                <p class="hero-subtitle">
-                    Independent corporate advisory delivering exceptional results in Corporate Finance, M&amp;A, Restructuring, and Strategic Consultancy — from Nariman Point, Mumbai.
-                </p>
-
-                <div class="hero-cta-row">
-                    <a href="#services" class="btn-hero-primary">
-                        Explore Services
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                    </a>
-                    <a href="about.html" class="btn-hero-ghost">
-                        <span class="play-ring">
-                            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-                        </span>
-                        Our Story
-                    </a>
-                </div>
-
-                <div class="hero-trust">
-                    <div class="trust-item">
-                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--accent-teal)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                        IBC Specialists
-                    </div>
-                    <div class="trust-item">
-                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--accent-teal)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                        Nariman Point, Mumbai
-                    </div>
-                    <div class="trust-item">
-                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--accent-teal)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                        15+ Years Legacy
-                    </div>
-                </div>
-            </div>
-
-            <!-- Right: glass card + floating badges -->
-            <div class="hero-right">
-
-                <div class="hero-glass-card">
-                    <div class="glass-card-header">
-                        <div class="glass-card-icon">
-                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-                        </div>
-                        <div>
-                            <p class="glass-card-label">Our Core Expertise</p>
-                            <p class="glass-card-sub">4 Specialized Verticals</p>
-                        </div>
-                    </div>
-                    <ul class="glass-services-list">
-                        <li class="glass-service-item active-service">
-                            <span class="service-dot"></span>
-                            Corporate Finance
-                        </li>
-                        <li class="glass-service-item">
-                            <span class="service-dot"></span>
-                            Mergers &amp; Acquisitions
-                        </li>
-                        <li class="glass-service-item">
-                            <span class="service-dot"></span>
-                            Insolvency &amp; Restructuring
-                        </li>
-                        <li class="glass-service-item">
-                            <span class="service-dot"></span>
-                            Management Consultancy
-                        </li>
-                    </ul>
-                    <a href="#services" class="glass-cta">View All Services →</a>
-                </div>
-
-                <div class="stat-badge badge-a">
-                    <span class="badge-num">$500M+</span>
-                    <span class="badge-text">Deal Value</span>
-                </div>
-                <div class="stat-badge badge-b">
-                    <span class="badge-num">100+</span>
-                    <span class="badge-text">Clients</span>
-                </div>
-                <div class="stat-badge badge-c">
-                    <span class="badge-num">15+</span>
-                    <span class="badge-text">Years</span>
-                </div>
-
-            </div>
-        </div>
-
-        <div class="scroll-indicator">
-            <span>Scroll</span>
-            <div class="scroll-line"><div class="scroll-dot"></div></div>
-        </div>
-
-    </section>
-
-    <section id="mission" style="background: var(--bg-gray);">
-        <div class="container">
-            <div class="about-split">
-                <div class="about-text">
-                    <div class="section-title"><h2>Who We Are</h2></div>
-                    <p style="font-size: 1.1rem; color: #444;">Built on a strong value-based legacy, we are an independent corporate advisory and consulting firm specializing in Corporate Finance, Insolvency and Operational Restructuring, Mergers and Acquisitions and Management Consultancy services.</p>
-                    <p>We strive to provide solutions that preserve and enhance value for our clients, ensuring that every strategic move is backed by deep industry insight and leadership expertise.</p>
-                    <a href="about.html" class="learn-more" style="color: var(--primary-color); font-weight: 800; display: flex; align-items: center; gap: 0.5rem; margin-top: 1rem;">DISCOVER OUR STORY →</a>
-                </div>
-                <div class="about-image">
-                    <div style="width: 100%; height: 400px; background: linear-gradient(135deg, #ede8f5, #d4eef0); border-radius: 12px; display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative;">
-                         <div style="position: absolute; width: 100%; height: 100%; background: linear-gradient(45deg, var(--primary-color), var(--accent-teal)); opacity: 0.08;"></div>
-                         <span style="font-weight: 800; font-size: 1.1rem; color: var(--primary-color); z-index: 1;">Impact of Expertise</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="services">
-        <div class="container">
-            <div class="section-title" style="text-align: center; display: flex; flex-direction: column; align-items: center;">
-                <h2>Our Expertise</h2>
-                <p style="max-width: 600px; margin-top: 1rem;">Custom services and solutions built specifically for your business growth and sustainability.</p>
-            </div>
-            <div class="services-grid">
-                <div class="service-card">
-                    <h3>Corporate Finance</h3>
-                    <p>Strategic financial planning, capital raising, and structured finance solutions tailored to midmarket enterprises.</p>
-                    <a href="#" class="learn-more">Read More →</a>
-                </div>
-                <div class="service-card">
-                    <h3>Insolvency &amp; Restructuring</h3>
-                    <p>Comprehensive restructuring services to help businesses navigate financial stress and preserve value during tough transitions.</p>
-                    <a href="#" class="learn-more">Read More →</a>
-                </div>
-                <div class="service-card">
-                    <h3>Mergers &amp; Acquisitions</h3>
-                    <p>Expert advisory for buy-side and sell-side mandates, ensuring seamless integration and maximum value extraction.</p>
-                    <a href="#" class="learn-more">Read More →</a>
-                </div>
-                <div class="service-card">
-                    <h3>Management Consultancy</h3>
-                    <p>Strategic insights and operational improvements to help you do what you do better, faster, and more profitably.</p>
-                    <a href="#" class="learn-more">Read More →</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <div class="stats-bar">
-        <div class="container">
-            <div class="stats-grid">
-                <div class="stat-item"><h2>$500M+</h2><p>Deal Value Advised</p></div>
-                <div class="stat-item"><h2>15+</h2><p>Years of Legacy</p></div>
-                <div class="stat-item"><h2>100+</h2><p>Clients Served</p></div>
-                <div class="stat-item"><h2>4</h2><p>Core Verticals</p></div>
+<body class="home-page">
+    <!-- ========== PRELOADER ========== -->
+    <div id="preloader">
+        <div class="preloader-inner">
+            <img src="https://thinkcapital.in/wp-content/uploads/2020/12/think_capital_logo.png" alt="Think Capital"
+                class="preloader-logo">
+            <div class="preloader-bar">
+                <div class="preloader-fill"></div>
             </div>
         </div>
     </div>
 
-    <footer>
+    <!-- ========== NAVIGATION ========== -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="#hero" class="nav-logo">
+                <img src="https://thinkcapital.in/wp-content/uploads/2020/12/think_capital_logo.png"
+                    alt="Think Capital Logo">
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html#hero" class="nav-link active" data-section="hero">Home</a></li>
+                <li><a href="index.html#about" class="nav-link" data-section="about">About Us</a></li>
+                <li><a href="index.html#advisory-board" class="nav-link" data-section="advisory-board">Advisory Board</a></li>
+                <li><a href="index.html#team" class="nav-link" data-section="team">Professional Team</a></li>
+                <li><a href="index.html#services" class="nav-link" data-section="services">Our Services</a></li>
+                <li><a href="ongoing-insolvency-assignments.html" class="nav-link" data-section="insolvency">Insolvency</a></li>
+                <li><a href="index.html#contact" class="nav-link" data-section="contact">Contact & Careers</a></li>
+            </ul>
+            <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ========== MOBILE MENU ========== -->
+    <div class="mobile-menu" id="mobileMenu">
+        <ul class="mobile-nav-links">
+            <li><a href="index.html#hero" class="mobile-link" data-section="hero">Home</a></li>
+            <li><a href="index.html#about" class="mobile-link" data-section="about">About Us</a></li>
+            <li><a href="index.html#advisory-board" class="mobile-link" data-section="advisory-board">Advisory Board</a></li>
+            <li><a href="index.html#team" class="mobile-link" data-section="team">Professional Team</a></li>
+            <li><a href="index.html#services" class="mobile-link" data-section="services">Our Services</a></li>
+            <li><a href="ongoing-insolvency-assignments.html" class="mobile-link" data-section="insolvency">Insolvency</a></li>
+            <li><a href="index.html#contact" class="mobile-link" data-section="contact">Contact & Careers</a></li>
+        </ul>
+    </div>
+
+    <!-- ========== HERO SECTION ========== -->
+    <section id="hero" class="section hero-section">
+        <div class="hero-grid-bg"></div>
+        <div class="hero-bg-shapes">
+            <div class="floating-item fi-1"><span>$10B+</span></div>
+            <div class="floating-item fi-2"><span>M&A</span></div>
+            <div class="floating-item fi-3"><span>Debt</span></div>
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+            <div class="shape shape-4"></div>
+            <div class="shape shape-glow-1"></div>
+            <div class="shape shape-glow-2"></div>
+        </div>
+        <div class="hero-particles" id="heroParticles"></div>
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="badge-dot"></span>
+                Since 2008 – Independent Corporate Advisory
+            </div>
+            <h1 class="hero-title">
+                <span class="hero-line">Think Ahead</span>
+                <span class="hero-line gradient-text">To Stay Ahead</span>
+            </h1>
+            <p class="hero-subtitle">
+                A leading midmarket <span class="typewriter" id="typewriter"></span>
+            </p>
+            <p class="hero-description">
+                Built on a strong value-based legacy, we provide specialized, independent, and tailor-made solutions in
+                Corporate Finance, Insolvency & Restructuring, Mergers & Acquisitions, and Management Consultancy.
+            </p>
+            <div class="hero-cta">
+                <a href="#about" class="btn btn-primary">
+                    Discover More
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                </a>
+                <a href="#services" class="btn btn-outline">Our Services</a>
+            </div>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number" data-count="10">0</span><span class="stat-suffix">bn+</span>
+                    <span class="stat-label">Transactions Advised ($)</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <span class="stat-number" data-count="100">0</span><span class="stat-suffix">+</span>
+                    <span class="stat-label">Years Combined Experience</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <span class="stat-number" data-count="75">0</span><span class="stat-suffix">+</span>
+                    <span class="stat-label">Assignments Completed</span>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="mouse">
+                <div class="mouse-wheel"></div>
+            </div>
+            <span>Scroll Down</span>
+        </div>
+    </section>
+
+    <!-- ========== ABOUT SECTION ========== -->
+    <section id="about" class="section about-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">About Us</span>
+                <h2 class="section-title">Strategic Investment Banking & Advisory for the Mid-Market</h2>
+            </div>
+
+            <div class="about-vision-banner reveal-card">
+                <div class="vision-item">
+                    <div class="vision-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <circle cx="12" cy="12" r="10" />
+                            <path d="M12 6v6l4 2" />
+                        </svg>
+                    </div>
+                    <div class="vision-text">
+                        <h4>Established 2008</h4>
+                        <p>Specialized, independent, tailor-made solutions with transactions exceeding $10bn.</p>
+                    </div>
+                </div>
+                <div class="vision-divider"></div>
+                <div class="vision-item">
+                    <div class="vision-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                        </svg>
+                    </div>
+                    <div class="vision-text">
+                        <h4>Expert Resources</h4>
+                        <p>Dedicated tenacity and strategic vision to optimally serve every industry sector.</p>
+                    </div>
+                </div>
+                <div class="vision-divider"></div>
+                <div class="vision-item">
+                    <div class="vision-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                            <circle cx="12" cy="12" r="3" />
+                        </svg>
+                    </div>
+                    <div class="vision-text">
+                        <h4>Trusted Advisory</h4>
+                        <p>Committed, pragmatic, and transparent approach in every delivery.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Focus / Expertise / Leadership -->
+            <div class="pillars-section">
+                <div class="pillar-card reveal-card" data-delay="0"
+                    style="--bg-img: url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2000')">
+                    <div class="pillar-overlay"></div>
+                    <div class="pillar-content">
+                        <h3>Focus</h3>
+                        <div class="pillar-hover-text">
+                            <p>We approach every transaction with a 360 degree holistic view, identifying and analyzing
+                                the full range of strategic and operational options available to optimize outcomes.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="pillar-card reveal-card" data-delay="150"
+                    style="--bg-img: url('https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&q=80&w=2000')">
+                    <div class="pillar-overlay"></div>
+                    <div class="pillar-content">
+                        <h3>Expertise</h3>
+                        <div class="pillar-hover-text">
+                            <p>Our sector experts bring in-depth knowledge in Strategic Planning, Financial Engineering,
+                                and Business Advisory to institutions and corporates at large.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="pillar-card reveal-card" data-delay="300"
+                    style="--bg-img: url('https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&q=80&w=2000')">
+                    <div class="pillar-overlay"></div>
+                    <div class="pillar-content">
+                        <h3>Leadership</h3>
+                        <div class="pillar-hover-text">
+                            <p>Senior leaders, industry experts, and corporate finance professionals providing premium
+                                advisory on high-stakes transactions aggregating over $10bn.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- What Makes Us Unique -->
+            <div class="unique-section">
+                <h3 class="unique-title reveal-card">What Makes Us Unique</h3>
+                <div class="unique-grid">
+                    <div class="unique-card reveal-card" data-delay="0">
+                        <div class="unique-icon-wrap">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path
+                                    d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z" />
+                                <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
+                                <line x1="12" y1="22.08" x2="12" y2="12" />
+                            </svg>
+                        </div>
+                        <h4>Insolvency & Restructuring Expertise</h4>
+                        <p>Our team has vast experience in insolvency and restructuring services with hands-on
+                            turnaround experience across sectors and industries.</p>
+                    </div>
+                    <div class="unique-card reveal-card" data-delay="100">
+                        <div class="unique-icon-wrap">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
+                                <circle cx="9" cy="7" r="4" />
+                                <path d="M23 21v-2a4 4 0 00-3-3.87" />
+                                <path d="M16 3.13a4 4 0 010 7.75" />
+                            </svg>
+                        </div>
+                        <h4>Transaction Advisory Services</h4>
+                        <p>Focus on Private Equity, Debt Financing and Distressed Sale with deep domain expertise.</p>
+                    </div>
+                    <div class="unique-card reveal-card" data-delay="200">
+                        <div class="unique-icon-wrap">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <circle cx="12" cy="12" r="10" />
+                                <line x1="2" y1="12" x2="22" y2="12" />
+                                <path
+                                    d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" />
+                            </svg>
+                        </div>
+                        <h4>Global Presence</h4>
+                        <p>Strong presence in India, Europe, and North America through our partners, driving complex
+                            cross-border transactions with seamless integration.</p>
+                    </div>
+                    <div class="unique-card reveal-card" data-delay="300">
+                        <div class="unique-icon-wrap">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path
+                                    d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" />
+                            </svg>
+                        </div>
+                        <h4>Relationships & Network</h4>
+                        <p>Cumulative team experience of 100+ years with a vast network of global and domestic PE
+                            investors, special situation funds, banks and ARCs.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Who We Serve -->
+            <div class="serve-section">
+                <h3 class="serve-title reveal-card">Who We Serve</h3>
+                <div class="serve-grid">
+                    <div class="serve-item reveal-card" data-delay="0">
+                        <div class="serve-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
+                                <path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16" />
+                            </svg>
+                        </div>
+                        <span>Corporates</span>
+                    </div>
+                    <div class="serve-item reveal-card" data-delay="100">
+                        <div class="serve-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <line x1="12" y1="1" x2="12" y2="23" />
+                                <path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" />
+                            </svg>
+                        </div>
+                        <span>Investors</span>
+                    </div>
+                    <div class="serve-item reveal-card" data-delay="200">
+                        <div class="serve-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <rect x="1" y="4" width="22" height="16" rx="2" ry="2" />
+                                <line x1="1" y1="10" x2="23" y2="10" />
+                            </svg>
+                        </div>
+                        <span>Banks & Lending Institutions</span>
+                    </div>
+                    <div class="serve-item reveal-card" data-delay="300">
+                        <div class="serve-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M18 8h1a4 4 0 010 8h-1" />
+                                <path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z" />
+                                <line x1="6" y1="1" x2="6" y2="4" />
+                                <line x1="10" y1="1" x2="10" y2="4" />
+                                <line x1="14" y1="1" x2="14" y2="4" />
+                            </svg>
+                        </div>
+                        <span>Special Situation Funds & ARCs</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== ADVISORY BOARD SECTION ========== -->
+    <section id="advisory-board" class="section advisory-section">
+        <div class="container" style="max-width: 1400px;">
+            <div class="section-header">
+                <span class="section-tag">Advisory Board</span>
+                <h2 class="section-title">Governed by Excellence & Deep Industry Insight</h2>
+                <p class="section-subtitle">Our Advisory Board consists of eminent professionals with decades of
+                    experience in accounting, finance, and taxation.</p>
+            </div>
+
+            <div class="advisors-grid">
+                <!-- Advisor 1 -->
+                <div class="advisor-card reveal-card" data-delay="0">
+                    <div class="advisor-image-wrap">
+                        <img src="img/PR_Vittel.png" alt="P R Vittel">
+                        <div class="advisor-overlay">
+                            <div class="advisor-main-info">
+                                <h3>P R Vittel</h3>
+                                <p class="advisor-profession">Senior Advisor | Chartered Accountant</p>
+                            </div>
+                            <div class="advisor-hover-content">
+                                <p>Over 40 years of experience. Senior Partner at M/s P. N. Raghavendra Rao & Co. Led
+                                    transactions in M&A, PE, and public issues. Holds an MBA and is a trusted advisor to
+                                    leading corporate groups.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Advisor 2 -->
+                <div class="advisor-card reveal-card" data-delay="100">
+                    <div class="advisor-image-wrap">
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=600"
+                            alt="K. P. Ramakrishnan">
+                        <div class="advisor-overlay">
+                            <div class="advisor-main-info">
+                                <h3>K. P. Ramakrishnan</h3>
+                                <p class="advisor-profession">Senior Advisor | B.Tech (IIT Chennai)</p>
+                            </div>
+                            <div class="advisor-hover-content">
+                                <p>35+ years in corporate and merchant banking. Former CGM at IDBI Bank and Head of CDR
+                                    Cell. Played a pivotal role in restructuring large corporate exposures across
+                                    complex portfolios.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Advisor 3 -->
+                <div class="advisor-card reveal-card" data-delay="200">
+                    <div class="advisor-image-wrap">
+                        <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=600"
+                            alt="Dr. S. V. S. S. Prasad">
+                        <div class="advisor-overlay">
+                            <div class="advisor-main-info">
+                                <h3>Dr. S. V. S. S. Prasad</h3>
+                                <p class="advisor-profession">Former Chief Commissioner of Income Tax</p>
+                            </div>
+                            <div class="advisor-hover-content">
+                                <p>35+ years of service in the Indian Revenue Service. Retiring in 2021. Expertise in
+                                    accountancy, taxation, and industrial finance. Doctorate in Agricultural Sciences
+                                    from IARI, New Delhi.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Advisor 4 -->
+                <div class="advisor-card reveal-card" data-delay="300">
+                    <div class="advisor-image-wrap">
+                        <img src="img/Pon_Arul_Paraneedharan.png" alt="Pon Arul Paraneedharan">
+                        <div class="advisor-overlay">
+                            <div class="advisor-main-info">
+                                <h3>Mr. Pon Arul Paraneedharan</h3>
+                                <p class="advisor-profession">Senior Partner | Chartered Accountant</p>
+                            </div>
+                            <div class="advisor-hover-content">
+                                <p>15+ years in audit, taxation, and corporate finance. Specialist in FEMA, M&A, and OTS
+                                    negotiations. Provides strategy-driven advisory across complex financial and
+                                    regulatory matters.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== SERVICES SECTION ========== -->
+    <section id="services" class="section services-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Our Services</span>
+                <h2 class="section-title">Custom Services & Solutions Built Specifically for Your Business</h2>
+                <p class="section-subtitle">Since our inception in 2008, our emphasis has been on providing specialized,
+                    independent, and tailor-made solutions in the field of Corporate Finance, Insolvency and Operational
+                    Restructuring, Mergers and Acquisitions and Management Consultancy.</p>
+            </div>
+
+            <div class="services-windows-container">
+                <!-- Window 1: Corporate Finance -->
+                <div class="service-window reveal-card" data-delay="0">
+                    <div class="window-header">
+                        <div class="window-title-area">
+                            <div class="window-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <line x1="12" y1="1" x2="12" y2="23" />
+                                    <path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" />
+                                </svg>
+                            </div>
+                            <div class="window-labels">
+                                <h3>Corporate Finance</h3>
+                                <p>Comprehensive capital raising and financial advisory services.</p>
+                            </div>
+                        </div>
+                        <button class="window-toggle" aria-label="Toggle details">
+                            <span class="toggle-icon">+</span>
+                        </button>
+                    </div>
+
+                    <div class="window-rollup">
+                        <div class="rollup-inner">
+                            <div class="rollup-main-desc">
+                                <p>We provide comprehensive capital raising and financial advisory services to support
+                                    business growth, strategic expansion, and value creation. Our team works with both
+                                    high-growth and established companies to raise capital for organic growth,
+                                    acquisitions, and liquidity requirements. We also advise stressed and special
+                                    situation companies on refinancing, structured funding, and strategic capital
+                                    infusion.</p>
+                                <p>With strong relationships across banks, financial institutions, private equity funds,
+                                    venture capital investors, and special situation funds, we are well-positioned to
+                                    facilitate efficient transaction execution. Our deep understanding of market
+                                    dynamics and investor expectations enables us to structure solutions that are
+                                    practical, timely, and aligned with client objectives.</p>
+                            </div>
+                            <div class="sub-services-grid">
+                                <div class="sub-service-box">
+                                    <h4>Equity Advisory</h4>
+                                    <p>We advise clients on raising equity capital across various stages of their
+                                        business lifecycle. Our services include facilitating investments from angel
+                                        investors and high net-worth individuals, venture capital and private equity
+                                        funding, as well as strategic investments and PIPE transactions. We also support
+                                        clients in accessing capital markets and exploring social impact funding
+                                        opportunities, ensuring alignment with long-term growth strategies.</p>
+                                </div>
+                                <div class="sub-service-box">
+                                    <h4>Debt Advisory</h4>
+                                    <p>We offer tailored debt solutions to address diverse financing requirements. Our
+                                        services cover growth and expansion capital, acquisition financing, and external
+                                        commercial borrowings. We also specialize in advising on special situations,
+                                        including restructuring and refinancing, along with structuring customized debt
+                                        solutions and facilitating unsecured funding. Our approach focuses on optimizing
+                                        capital structure while ensuring flexibility and sustainability for the
+                                        business.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Window 2: M&A Advisory -->
+                <div class="service-window reveal-card" data-delay="100">
+                    <div class="window-header">
+                        <div class="window-title-area">
+                            <div class="window-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
+                                    <circle cx="9" cy="7" r="4" />
+                                    <path d="M23 21v-2a4 4 0 00-3-3.87" />
+                                    <path d="M16 3.13a4 4 0 010 7.75" />
+                                </svg>
+                            </div>
+                            <div class="window-labels">
+                                <h3>Mergers & Acquisitions Advisory</h3>
+                                <p>Strategic transactions supporting long-term value-driven outcomes.</p>
+                            </div>
+                        </div>
+                        <button class="window-toggle" aria-label="Toggle details">
+                            <span class="toggle-icon">+</span>
+                        </button>
+                    </div>
+
+                    <div class="window-rollup">
+                        <div class="rollup-inner">
+                            <div class="rollup-main-desc">
+                                <p>We provide end-to-end mergers and acquisitions advisory services to corporates,
+                                    supporting strategic transactions including acquisitions, divestitures, buyouts,
+                                    strategic investments, and distressed sales. Our approach is grounded in a
+                                    comprehensive evaluation of the business, industry dynamics, competitive landscape,
+                                    financial performance, and relevant legal, regulatory, and accounting
+                                    considerations—ensuring well-informed and value-driven outcomes.</p>
+                            </div>
+                            <div class="sub-services-grid">
+                                <div class="sub-service-box">
+                                    <h4>Sell-Side Advisory</h4>
+                                    <p>We act as a strategic partner throughout the divestment process, offering
+                                        end-to-end support from transaction preparation to closure. Our role includes
+                                        positioning the business, identifying and engaging with potential investors,
+                                        facilitating negotiations, and coordinating with advisors and stakeholders. We
+                                        provide objective guidance to help clients evaluate bids and achieve optimal
+                                        value realization.</p>
+                                </div>
+                                <div class="sub-service-box">
+                                    <h4>Distressed M&A Advisory</h4>
+                                    <p>We assist companies in navigating distressed sale situations through structured
+                                        and pragmatic strategies. Our services include identifying potential buyers such
+                                        as ARCs and strategic investors, conducting valuation and synergy assessments,
+                                        structuring transactions, and managing timelines. We also support resolution
+                                        planning, buyout structuring, and post-transaction integration and turnaround
+                                        initiatives.</p>
+                                </div>
+                                <div class="sub-service-box">
+                                    <h4>Buy-Side Advisory</h4>
+                                    <p>We support clients in executing inorganic growth strategies by identifying,
+                                        evaluating, and executing suitable acquisition opportunities. Our process
+                                        includes detailed due diligence, synergy assessment, and evaluation of
+                                        commercial and non-commercial terms. We work closely with stakeholders to
+                                        structure transactions that maximize value and ensure seamless execution.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Window 3: Special Situations -->
+                <div class="service-window reveal-card" data-delay="200">
+                    <div class="window-header">
+                        <div class="window-title-area">
+                            <div class="window-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <path
+                                        d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z" />
+                                </svg>
+                            </div>
+                            <div class="window-labels">
+                                <h3>Distressed & Special Situations Advisory</h3>
+                                <p>Comprehensive solutions for business revival and turnaround.</p>
+                            </div>
+                        </div>
+                        <button class="window-toggle" aria-label="Toggle details">
+                            <span class="toggle-icon">+</span>
+                        </button>
+                    </div>
+
+                    <div class="window-rollup">
+                        <div class="rollup-inner">
+                            <div class="rollup-main-desc">
+                                <p>We provide comprehensive, end-to-end advisory solutions for businesses facing
+                                    financial or operational stress, supporting them from early signs of distress
+                                    through to revival and sustainable turnaround. Our approach integrates financial,
+                                    operational, and strategic interventions to stabilize and reposition businesses
+                                    effectively. Backed by a team of experienced former bankers and insolvency
+                                    professionals, we bring deep execution capability and strong relationships with
+                                    banks, financial institutions, special situation funds, and ARCs.</p>
+                            </div>
+                            <div class="sub-services-grid">
+                                <div class="sub-service-box">
+                                    <h4>Insolvency & Bankruptcy Advisory</h4>
+                                    <p>We offer end-to-end support across insolvency and resolution processes, including
+                                        resolution plan preparation, interim and priority funding, and independent
+                                        evaluation of resolution proposals. Our services extend to transaction
+                                        structuring, turnaround advisory, and managing operations of stressed companies
+                                        during the resolution phase. We also undertake CRO (Chief Restructuring Officer)
+                                        roles and support M&A transactions within insolvency scenarios.</p>
+                                </div>
+                                <div class="sub-service-box">
+                                    <h4>Operational Restructuring</h4>
+                                    <p>We assist businesses in improving operational efficiency and restoring
+                                        profitability through structured interventions. Our services include independent
+                                        business reviews, process optimization, and identification of control gaps. We
+                                        support implementation of resolution plans, facilitate turnaround funding, and
+                                        enable induction of strategic partners. Our approach also focuses on cash flow
+                                        management, performance improvement, and ongoing monitoring to ensure
+                                        sustainable recovery.</p>
+                                </div>
+                                <div class="sub-service-box">
+                                    <h4>Financial Restructuring</h4>
+                                    <p>We advise on restructuring of capital structures to enhance financial stability
+                                        and long-term viability. Our services include debt restructuring, refinancing,
+                                        turnaround funding, and formulation of resolution plans. We also assist in
+                                        resolution of stressed assets, strategic investments, change in management,
+                                        distressed M&A, and sale of non-performing assets (NPAs), ensuring a holistic
+                                        and value-maximizing approach.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== TEAM SECTION ========== -->
+    <section id="team" class="section team-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Our People</span>
+                <h2 class="section-title">Professional Team</h2>
+                <p class="section-subtitle">Our team consists of seasoned investment bankers, industry experts, and
+                    financial professionals dedicated to your success.</p>
+            </div>
+
+            <!-- Professional Team -->
+            <div class="team-category">
+                <div class="team-grid professional-grid">
+                    <!-- Member 1 -->
+                    <div class="advisor-card reveal-card" data-delay="0">
+                        <div class="advisor-image-wrap">
+                            <img src="https://images.unsplash.com/photo-1556157382-97dee2dcb96a?auto=format&fit=crop&q=80&w=500"
+                                alt="Huzefa Sitabkhan">
+                            <div class="advisor-overlay">
+                                <div class="advisor-main-info">
+                                    <h3>Huzefa Sitabkhan</h3>
+                                    <p class="advisor-profession">Director | CA & RIP</p>
+                                </div>
+                                <div class="advisor-hover-content">
+                                    <p>Rank-holder CA with 22+ years in investment banking. Former Head of Investment
+                                        Banking at IDBI Capital. Successfully delivered 75+ assignments across capital
+                                        markets and corporate advisory.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Member 2 -->
+                    <div class="advisor-card reveal-card" data-delay="50">
+                        <div class="advisor-image-wrap">
+                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=500"
+                                alt="Saurabh Jain">
+                            <div class="advisor-overlay">
+                                <div class="advisor-main-info">
+                                    <h3>Saurabh Jain</h3>
+                                    <p class="advisor-profession">Director | Chartered Accountant</p>
+                                </div>
+                                <div class="advisor-hover-content">
+                                    <p>20+ years in investment banking. Former Head of Corporate Advisory at IDBI
+                                        Capital. Successfully delivered 65+ assignments in debt syndication, M&A, and
+                                        restructuring.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Member 3 -->
+                    <div class="advisor-card reveal-card" data-delay="100">
+                        <div class="advisor-image-wrap">
+                            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=500"
+                                alt="Umesh Ved">
+                            <div class="advisor-overlay">
+                                <div class="advisor-main-info">
+                                    <h3>Umesh Ved</h3>
+                                    <p class="advisor-profession">CS, LLB & RIP</p>
+                                </div>
+                                <div class="advisor-hover-content">
+                                    <p>Nearly 40 years of experience in corporate law, compliance, and restructuring.
+                                        Expert in due diligence, mergers, and liquidation. Principal at Umesh Ved &
+                                        Associates.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Member 4 -->
+                    <div class="advisor-card reveal-card" data-delay="150">
+                        <div class="advisor-image-wrap">
+                            <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&q=80&w=500"
+                                alt="Ebby J Chirayil">
+                            <div class="advisor-overlay">
+                                <div class="advisor-main-info">
+                                    <h3>Ebby J Chirayil</h3>
+                                    <p class="advisor-profession">Banking Professional</p>
+                                </div>
+                                <div class="advisor-hover-content">
+                                    <p>Seasoned banker with leadership roles at ICICI, HDFC, and South Indian Bank.
+                                        Expert in retail/corporate banking, credit, and risk management.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Member 5 -->
+                    <div class="advisor-card reveal-card" data-delay="200">
+                        <div class="advisor-image-wrap">
+                            <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=500"
+                                alt="John D’Souza">
+                            <div class="advisor-overlay">
+                                <div class="advisor-main-info">
+                                    <h3>John D’Souza</h3>
+                                    <p class="advisor-profession">Financial Services Expert</p>
+                                </div>
+                                <div class="advisor-hover-content">
+                                    <p>39+ years across India and UAE. Specialty in structuring solutions and business
+                                        financing. Held leadership roles at Emirates Bank and ABN AMRO.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Member 6 -->
+                    <div class="advisor-card reveal-card" data-delay="250">
+                        <div class="advisor-image-wrap">
+                            <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=500"
+                                alt="Alpa Talwar">
+                            <div class="advisor-overlay">
+                                <div class="advisor-main-info">
+                                    <h3>Alpa Talwar</h3>
+                                    <p class="advisor-profession">Finance & Relationship Expert</p>
+                                </div>
+                                <div class="advisor-hover-content">
+                                    <p>Nearly 30 years in corporate banking and project finance. Expert in debt
+                                        syndication and distressed assets. Former IDBI Bank professional.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Member 7 -->
+                    <div class="advisor-card reveal-card" data-delay="300">
+                        <div class="advisor-image-wrap">
+                            <img src="https://images.unsplash.com/photo-1542909168-82c3e7fdca5c?auto=format&fit=crop&q=80&w=500"
+                                alt="Nikhil Sharma">
+                            <div class="advisor-overlay">
+                                <div class="advisor-main-info">
+                                    <h3>Nikhil Sharma</h3>
+                                    <p class="advisor-profession">Techno-Commercial Expert</p>
+                                </div>
+                                <div class="advisor-hover-content">
+                                    <p>11+ years in insolvency and transaction advisory. Specializes in valuations, CIRP
+                                        management, and resolution planning. M.Tech & MBA graduate.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Member 8 -->
+                    <div class="advisor-card reveal-card" data-delay="350">
+                        <div class="advisor-image-wrap">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=500"
+                                alt="Kapish Khanna">
+                            <div class="advisor-overlay">
+                                <div class="advisor-main-info">
+                                    <h3>Kapish Khanna</h3>
+                                    <p class="advisor-profession">Company Secretary & LLB</p>
+                                </div>
+                                <div class="advisor-hover-content">
+                                    <p>Expert in corporate laws, SEBI regulations, and IBC. Strong background in
+                                        insolvency matters and corporate legal advisory.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Member 9 -->
+                    <div class="advisor-card reveal-card" data-delay="400">
+                        <div class="advisor-image-wrap">
+                            <img src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?auto=format&fit=crop&q=80&w=500"
+                                alt="Shivang Ashar">
+                            <div class="advisor-overlay">
+                                <div class="advisor-main-info">
+                                    <h3>Shivang Ashar</h3>
+                                    <p class="advisor-profession">Investment Banking Expert</p>
+                                </div>
+                                <div class="advisor-hover-content">
+                                    <p>7+ years in equity fund raising and financial modelling across healthcare and
+                                        technology. Former PwC and Malabar Capital professional.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== MAJOR ASSIGNMENTS SECTION ========== -->
+    <section id="major-assignments" class="section" style="background: var(--white);">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Track Record</span>
+                <h2 class="section-title">Major Assignments</h2>
+                <p class="section-subtitle">A high-impact portfolio across Private Equity, Debt Advisory, and Insolvency mandate closures.</p>
+            </div>
+
+            <div class="quick-links-grid">
+                <a href="pe-ma-transactions.html" class="quick-link-btn theme-pe reveal-card" data-delay="100">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                        <path d="M12 8v4" /><path d="M12 16h.01" />
+                    </svg>
+                    <span>PE and M&A Transactions</span>
+                </a>
+                <a href="debt-advisory-transactions.html" class="quick-link-btn theme-debt reveal-card" data-delay="200">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <line x1="12" y1="1" x2="12" y2="23" />
+                        <path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" />
+                    </svg>
+                    <span>Debt Advisory Transactions</span>
+                </a>
+                <a href="ongoing-insolvency-assignments.html" class="quick-link-btn theme-tracker reveal-card" data-delay="300">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <rect x="3" y="4" width="18" height="16" rx="2" />
+                        <line x1="16" y1="2" x2="16" y2="6" />
+                        <line x1="8" y1="2" x2="8" y2="6" />
+                        <line x1="3" y1="10" x2="21" y2="10" />
+                    </svg>
+                    <span>Insolvency Project Tracker</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== CONTACT & CAREERS SECTION (SIDE-BY-SIDE) ========== -->
+    <section id="contact" class="section contact-careers-section">
+        <div class="container" style="max-width: 1250px;">
+            <div class="section-header">
+                <span class="section-tag">Get In Touch</span>
+                <h2 class="section-title">Connect With Us</h2>
+                <p class="section-subtitle">Specialized advisory for startups and professional growth opportunities for
+                    talent.</p>
+            </div>
+
+            <!-- Horizontal Mini Info Bar -->
+            <div class="contact-info-bar reveal-card">
+                <div class="bar-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                        <polyline points="22,6 12,13 2,6" />
+                    </svg>
+                    <a href="mailto:info@thinkcapital.in">info@thinkcapital.in</a>
+                </div>
+                <div class="bar-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+                        <circle cx="12" cy="10" r="3" />
+                    </svg>
+                    <span>Nariman Point, Mumbai</span>
+                </div>
+                <div class="bar-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path
+                            d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z" />
+                    </svg>
+                    <a href="tel:+912266100910">+91 22 6610 0910</a>
+                </div>
+            </div>
+
+            <div class="forms-grid">
+                <!-- Column 1: Startup Fundraising Form -->
+                <div class="form-container reveal-card" data-delay="100">
+                    <div class="form-title-wrap">
+                        <h3>Fundraising for Startups</h3>
+                        <p>Complete the questionnaire to explore funding options.</p>
+                    </div>
+                    <form id="fundraisingForm" class="compact-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="fsName">Full Name *</label>
+                                <input type="text" id="fsName" name="fullName" required placeholder="Your Name">
+                            </div>
+                            <div class="form-group">
+                                <label for="fsEmail">Email Address *</label>
+                                <input type="email" id="fsEmail" name="email" required placeholder="Work Email">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="fsCompanyName">Company Name *</label>
+                                <input type="text" id="fsCompanyName" name="companyName" required
+                                    placeholder="Entity Name">
+                            </div>
+                            <div class="form-group">
+                                <label for="fsMobile">Mobile Number *</label>
+                                <input type="tel" id="fsMobile" name="mobile" required placeholder="+91">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="fsWebsite">Company Website *</label>
+                                <input type="url" id="fsWebsite" name="website" required placeholder="https://">
+                            </div>
+                            <div class="form-group">
+                                <label for="fsSector">Sector *</label>
+                                <input type="text" id="fsSector" name="sector" required
+                                    placeholder="e.g. Fintech, SaaS">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="fsCity">City *</label>
+                                <input type="text" id="fsCity" name="city" required placeholder="Headquarters">
+                            </div>
+                            <div class="form-group">
+                                <label for="fsTurnover">Current Turnover (ARR in Cr) *</label>
+                                <input type="text" id="fsTurnover" name="turnover" required
+                                    placeholder="Based on last 3-6 months">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="fsPitchdeck">Presentation / Pitchdeck (Optional)</label>
+                            <input type="file" id="fsPitchdeck" name="pitchdeck">
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-full">Submit Pitch</button>
+                    </form>
+                </div>
+
+                <!-- Column 2: Careers Form -->
+                <div class="form-container reveal-card" data-delay="200">
+                    <div class="form-title-wrap">
+                        <h3>Careers & Internships</h3>
+                        <p>Apply for full-time roles or internship programs.</p>
+                    </div>
+                    <form id="careerForm" class="compact-form">
+                        <div class="form-group">
+                            <label for="carName">Full Name *</label>
+                            <input type="text" id="carName" name="fullName" required placeholder="Your Name">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="carEmail">Email Address *</label>
+                                <input type="email" id="carEmail" name="email" required placeholder="Email">
+                            </div>
+                            <div class="form-group">
+                                <label for="carMobile">Mobile Number *</label>
+                                <input type="tel" id="carMobile" name="mobile" required placeholder="Mobile">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="carQual">Qualifications *</label>
+                            <input type="text" id="carQual" name="qualifications" required
+                                placeholder="Your highest degree">
+                        </div>
+                        <div class="form-group">
+                            <label for="carIntern">Internship Period (if applicable)</label>
+                            <input type="text" id="carIntern" name="internshipPeriod"
+                                placeholder="e.g. 3 Months, Summer 2024">
+                        </div>
+                        <div class="form-group">
+                            <label for="carCv">Upload CV / Resume *</label>
+                            <input type="file" id="carCv" name="resume" required>
+                        </div>
+                        <button type="submit" class="btn btn-navy btn-full">Apply Now</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer id="footer">
         <div class="container">
             <div class="footer-grid">
-                <div class="footer-col" style="grid-column: span 1.5;">
-                    <a href="index.html" class="logo" style="color: white; margin-bottom: 2rem; display: block;">THINK<span>CAPITAL</span></a>
-                    <p style="font-size: 0.9rem; line-height: 1.8;">Think Capital is a leading midmarket investment banking and corporate advisory firm focusing on delivering excellence through leadership and expertise.</p>
+                <div class="footer-brand">
+                    <img src="https://thinkcapital.in/wp-content/uploads/2020/12/think_capital_logo.png"
+                        alt="Think Capital" class="footer-logo">
+                    <p>1007-13 Dalamal Tower, Free Press Journal Road, 211, Nariman Point, Mumbai – 400 021. MAH</p>
+                    <p><strong>Phone:</strong> +91 22 6610 0910 – 11</p>
+                    <p><strong>Email:</strong> <a href="mailto:info@thinkcapital.in">info@thinkcapital.in</a></p>
                 </div>
-                <div class="footer-col">
-                    <h4>Who We Are</h4>
+                <div class="footer-links-group">
+                    <h4>Quick Links</h4>
                     <ul>
-                        <li><a href="about.html">About Us</a></li>
-                        <li><a href="#">Advisory Board</a></li>
-                        <li><a href="#">Professional Team</a></li>
-                        <li><a href="#">Knowledge Bank</a></li>
+                        <li><a href="index.html#about">About Us</a></li>
+                        <li><a href="index.html#team">Our Team</a></li>
+                        <li><a href="index.html#services">Services</a></li>
+                        <li><a href="ongoing-insolvency-assignments.html">Insolvency</a></li>
+                        <li><a href="index.html#contact">Contact & Careers</a></li>
                     </ul>
                 </div>
-                <div class="footer-col">
-                    <h4>Contact Us</h4>
-                    <ul class="contact-info">
-                        <li><span>1007-13 Dalamal Tower, Free Press Journal Road, Nariman Point, Mumbai – 400 021.</span></li>
-                        <li><span>+91 22 6610 0910</span></li>
-                        <li><span>info@thinkcapital.in</span></li>
+                <div class="footer-links-group">
+                    <h4>Who We Serve</h4>
+                    <ul>
+                        <li>Corporates</li>
+                        <li>Investors</li>
+                        <li>Banks & Lending Institutions</li>
+                        <li>Special Situation Funds & ARCs</li>
+                    </ul>
+                </div>
+                <div class="footer-links-group">
+                    <h4>What We Do</h4>
+                    <ul>
+                        <li><a href="index.html#services">Corporate Finance</a></li>
+                        <li><a href="ongoing-insolvency-assignments.html">Insolvency & Restructuring</a></li>
+                        <li><a href="index.html#services">Mergers & Acquisitions</a></li>
+                        <li><a href="index.html#services">Management Consultancy</a></li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2026 Think Capital. All rights reserved.</p>
-                <div style="display: flex; gap: 2rem;">
-                    <a href="#">Privacy Policy</a>
-                    <a href="#">Terms of Use</a>
-                    <a href="#">Sitemap</a>
-                </div>
+                <p>&copy; 2025 Think Capital. All Rights Reserved.</p>
             </div>
         </div>
     </footer>
 
+    <!-- Back to Top -->
+    <button id="backToTop" class="back-to-top" aria-label="Back to top">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="18 15 12 9 6 15" />
+        </svg>
+    </button>
+
     <script src="main.js"></script>
-    <script>
-    /* ═══ HERO JAVASCRIPT ═══════════════════════════════════════ */
-
-    // 1. Typewriter effect
-    const words = ['Advisory.', 'Solutions.', 'Finance.', 'Leadership.', 'Insight.'];
-    const el = document.getElementById('typewriter');
-    let wi = 0, ci = 0, deleting = false;
-
-    function typeLoop() {
-        const word = words[wi];
-        el.textContent = deleting ? word.slice(0, ci--) : word.slice(0, ci++);
-        let delay = deleting ? 60 : 110;
-        if (!deleting && ci > word.length) { delay = 1800; deleting = true; }
-        if (deleting && ci < 0) { deleting = false; ci = 0; wi = (wi + 1) % words.length; delay = 400; }
-        setTimeout(typeLoop, delay);
-    }
-    setTimeout(typeLoop, 1200);
-
-    // 2. Canvas particle network
-    const canvas = document.getElementById('heroCanvas');
-    const ctx = canvas.getContext('2d');
-    let W, H, particles = [];
-
-    function resize() { W = canvas.width = canvas.offsetWidth; H = canvas.height = canvas.offsetHeight; }
-    window.addEventListener('resize', () => { resize(); init(); });
-    resize();
-
-    class Particle {
-        constructor() { this.reset(true); }
-        reset(random) {
-            this.x = Math.random() * W;
-            this.y = random ? Math.random() * H : H + 10;
-            this.r = Math.random() * 1.5 + 0.5;
-            this.vx = (Math.random() - 0.5) * 0.4;
-            this.vy = -(Math.random() * 0.5 + 0.15);
-            this.alpha = Math.random() * 0.5 + 0.1;
-        }
-        update() {
-            this.x += this.vx; this.y += this.vy;
-            if (this.y < -10) this.reset(false);
-        }
-        draw() {
-            ctx.beginPath();
-            ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
-            ctx.fillStyle = `rgba(0,200,210,${this.alpha})`;
-            ctx.fill();
-        }
-    }
-
-    function init() {
-        particles = Array.from({ length: 110 }, () => new Particle());
-    }
-
-    function connectLines() {
-        for (let i = 0; i < particles.length; i++) {
-            for (let j = i + 1; j < particles.length; j++) {
-                const dx = particles[i].x - particles[j].x;
-                const dy = particles[i].y - particles[j].y;
-                const dist = Math.sqrt(dx * dx + dy * dy);
-                if (dist < 100) {
-                    ctx.beginPath();
-                    ctx.moveTo(particles[i].x, particles[i].y);
-                    ctx.lineTo(particles[j].x, particles[j].y);
-                    ctx.strokeStyle = `rgba(0,180,200,${0.08 * (1 - dist / 100)})`;
-                    ctx.lineWidth = 0.6;
-                    ctx.stroke();
-                }
-            }
-        }
-    }
-
-    function loop() {
-        ctx.clearRect(0, 0, W, H);
-        particles.forEach(p => { p.update(); p.draw(); });
-        connectLines();
-        requestAnimationFrame(loop);
-    }
-
-    init(); loop();
-
-    // 3. Mouse parallax on hero content
-    const heroContent = document.getElementById('heroContent');
-    document.getElementById('hero').addEventListener('mousemove', (e) => {
-        const rect = e.currentTarget.getBoundingClientRect();
-        const cx = rect.left + rect.width / 2;
-        const cy = rect.top + rect.height / 2;
-        const dx = (e.clientX - cx) / cx;
-        const dy = (e.clientY - cy) / cy;
-        heroContent.style.transform = `translate(${dx * 8}px, ${dy * 6}px)`;
-    });
-    document.getElementById('hero').addEventListener('mouseleave', () => {
-        heroContent.style.transform = 'translate(0,0)';
-        heroContent.style.transition = 'transform 0.6s ease';
-    });
-
-    // 4. Cycle active item in glass card
-    const items = document.querySelectorAll('.glass-service-item');
-    let activeIdx = 0;
-    setInterval(() => {
-        items[activeIdx].classList.remove('active-service');
-        activeIdx = (activeIdx + 1) % items.length;
-        items[activeIdx].classList.add('active-service');
-    }, 2200);
-    </script>
 </body>
+
 </html>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Think Capital – Debt Advisory Transactions. Comprehensive debt advisory, syndication, and restructuring services for businesses.">
+    <title>Debt Advisory Transactions – Think Capital</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="index.html#hero" class="nav-logo">
+                <img src="https://thinkcapital.in/wp-content/uploads/2020/12/think_capital_logo.png"
+                    alt="Think Capital Logo">
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html#hero" class="nav-link" data-section="hero">Home</a></li>
+                <li><a href="index.html#about" class="nav-link" data-section="about">About Us</a></li>
+                <li><a href="index.html#advisory-board" class="nav-link" data-section="advisory-board">Advisory Board</a></li>
+                <li><a href="index.html#team" class="nav-link" data-section="team">Professional Team</a></li>
+                <li><a href="index.html#services" class="nav-link" data-section="services">Our Services</a></li>
+                <li><a href="ongoing-insolvency-assignments.html" class="nav-link" data-section="insolvency">Insolvency</a></li>
+                <li><a href="index.html#contact" class="nav-link" data-section="contact">Contact & Careers</a></li>
+            </ul>
+            <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+    <div class="mobile-menu" id="mobileMenu">
+        <ul class="mobile-nav-links">
+            <li><a href="index.html#hero" class="mobile-link" data-section="hero">Home</a></li>
+            <li><a href="index.html#about" class="mobile-link" data-section="about">About Us</a></li>
+            <li><a href="index.html#advisory-board" class="mobile-link" data-section="advisory-board">Advisory Board</a></li>
+            <li><a href="index.html#team" class="mobile-link" data-section="team">Professional Team</a></li>
+            <li><a href="index.html#services" class="mobile-link" data-section="services">Our Services</a></li>
+            <li><a href="ongoing-insolvency-assignments.html" class="mobile-link" data-section="insolvency">Insolvency</a></li>
+            <li><a href="index.html#contact" class="mobile-link" data-section="contact">Contact & Careers</a></li>
+        </ul>
+    </div>
+
+    <!-- ========== HERO ========== -->
+    <section class="subpage-hero" style="background: linear-gradient(135deg, #f8fafc 0%, #eef4fb 100%); padding: 160px 0 80px;">
+        <div class="container">
+            <div style="display: inline-flex; align-items: center; gap: 10px; background: white; border: 1px solid #e0f2fe; padding: 8px 20px; border-radius: 50px; font-size: 12px; font-weight: 600; color: #0284c7; margin-bottom: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+                Track Record
+            </div>
+            <h1 style="font-family: 'Outfit', sans-serif; font-size: clamp(32px, 5vw, 48px); font-weight: 800; color: #0a1628; line-height: 1.1;">Debt Advisory Transactions</h1>
+            <p style="font-size: 17px; color: #525252; margin-top: 20px; max-width: 700px; line-height: 1.7;">Comprehensive debt advisory and syndication services. We help businesses optimize their capital structure and secure financing from leading institutions.</p>
+            <div style="display: flex; gap: 24px; margin-top: 32px; flex-wrap: wrap;">
+                <a href="pe-ma-transactions.html" class="btn btn-outline" style="font-size: 13px; padding: 10px 24px;">View PE & M&A →</a>
+                <a href="index.html#contact" class="btn btn-primary" style="font-size: 13px; padding: 10px 24px;">Enquire Now</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== TRANSACTIONS GRID ========== -->
+    <section class="section" style="background: #f8fafc;">
+        <div class="container" style="max-width: 1300px;">
+            <div id="debtTransactionsGrid" class="transaction-grid">
+                <!-- Cards rendered by JS -->
+            </div>
+        </div>
+    </section>
+
+    <script src="transactions-data.js"></script>
+    <script>
+        function renderDebtTransactions() {
+            const grid = document.getElementById('debtTransactionsGrid');
+            const data = getDebtTransactions();
+
+            if (!data || data.length === 0) {
+                grid.innerHTML = `
+                    <div style="grid-column: 1/-1; background: white; border-radius: 20px; padding: 60px; border: 1px solid #e5e7eb; text-align: center;">
+                        <h2 style="font-family: 'Outfit', sans-serif; margin-bottom: 20px;">No Transactions Yet</h2>
+                        <p style="color: #6b7280; font-size: 16px;">Debt Advisory transactions will appear here once added via the admin panel.</p>
+                    </div>`;
+                return;
+            }
+
+            grid.innerHTML = data.map((t, idx) => `
+                <div class="transaction-card" style="opacity:0; transform: translateY(20px); transition: opacity 0.5s ease ${idx * 0.06}s, transform 0.5s ease ${idx * 0.06}s, box-shadow 0.3s ease;">
+                    <div class="tc-logo-wrap">
+                        <img src="${t.logo || PLACEHOLDER_LOGO}" alt="${t.logoAlt || t.name}" class="tc-main-logo"
+                             onerror="this.src='${PLACEHOLDER_LOGO}'">
+                    </div>
+                    <div class="tc-content">
+                        <h3 class="tc-entity-name">${t.name}</h3>
+                        ${t.nameSub ? `<p class="tc-entity-sub">${t.nameSub}</p>` : ''}
+                        <div class="tc-details">
+                            <span class="tc-label">${t.type}</span>
+                            ${t.counterpartyLogo ? `
+                                <div class="tc-counterparty-logo">
+                                    <img src="${t.counterpartyLogo}" alt="${t.counterpartyName}"
+                                         onerror="this.parentElement.innerHTML='<p class=tc-counterparty-name>${t.counterpartyName}</p>'">
+                                </div>
+                            ` : `
+                                <p class="tc-counterparty-name">${t.counterpartyName}</p>
+                            `}
+                        </div>
+                    </div>
+                    <div class="tc-footer">
+                        <span class="tc-category">${t.service}</span>
+                    </div>
+                </div>
+            `).join('');
+
+            // Trigger reveal
+            requestAnimationFrame(() => {
+                const cards = grid.querySelectorAll('.transaction-card');
+                cards.forEach(card => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                });
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', renderDebtTransactions);
+    </script>
+
+    <footer id="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <img src="https://thinkcapital.in/wp-content/uploads/2020/12/think_capital_logo.png"
+                        alt="Think Capital" class="footer-logo">
+                    <p>1007-13 Dalamal Tower, Free Press Journal Road, 211, Nariman Point, Mumbai – 400 021. MAH</p>
+                    <p><strong>Phone:</strong> +91 22 6610 0910 – 11</p>
+                    <p><strong>Email:</strong> <a href="mailto:info@thinkcapital.in">info@thinkcapital.in</a></p>
+                </div>
+                <div class="footer-links-group">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html#about">About Us</a></li>
+                        <li><a href="index.html#team">Our Team</a></li>
+                        <li><a href="index.html#services">Services</a></li>
+                        <li><a href="ongoing-insolvency-assignments.html">Insolvency</a></li>
+                        <li><a href="index.html#contact">Contact & Careers</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links-group">
+                    <h4>Who We Serve</h4>
+                    <ul>
+                        <li>Corporates</li>
+                        <li>Investors</li>
+                        <li>Banks & Lending Institutions</li>
+                        <li>Special Situation Funds & ARCs</li>
+                    </ul>
+                </div>
+                <div class="footer-links-group">
+                    <h4>What We Do</h4>
+                    <ul>
+                        <li><a href="index.html#services">Corporate Finance</a></li>
+                        <li><a href="ongoing-insolvency-assignments.html">Insolvency & Restructuring</a></li>
+                        <li><a href="index.html#services">Mergers & Acquisitions</a></li>
+                        <li><a href="index.html#services">Management Consultancy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Think Capital. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <button id="backToTop" class="back-to-top" aria-label="Back to top">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="18 15 12 9 6 15" />
+        </svg>
+    </button>
+    
+    <script src="main.js"></script>
+</body>
+</html>

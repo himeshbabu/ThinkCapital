@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin CMS – Think Capital</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --navy: #0a1628;
+            --blue: #0ea5e9;
+            --blue-dark: #0284c7;
+            --blue-light: #e0f2fe;
+            --red: #ef4444;
+            --red-light: #fef2f2;
+            --green: #10b981;
+            --green-light: #ecfdf5;
+            --amber: #f59e0b;
+            --amber-light: #fffbeb;
+            --purple: #8b5cf6;
+            --purple-light: #f5f3ff;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-500: #6b7280;
+            --gray-700: #374151;
+            --gray-900: #111827;
+        }
+
+        body { font-family: 'Inter', sans-serif; background: #f3f4f6; color: var(--gray-900); }
+
+        /* ===== TOPBAR ===== */
+        .topbar { background: var(--navy); height: 64px; display: flex; align-items: center; padding: 0 40px; color: white; justify-content: space-between; position: sticky; top:0; z-index: 100; }
+        .logo { height: 32px; filter: brightness(0) invert(1); }
+        .topbar-right { display: flex; gap: 16px; align-items: center; }
+        .topbar-link { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 12px; transition: color 0.2s; padding: 6px 12px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.15); }
+        .topbar-link:hover { color: white; border-color: rgba(255,255,255,0.4); }
+
+        /* ===== LAYOUT ===== */
+        .layout { display: flex; min-height: calc(100vh - 64px); }
+
+        /* ===== SIDEBAR ===== */
+        .sidebar { width: 260px; background: white; border-right: 1px solid var(--gray-200); overflow-y: auto; flex-shrink: 0; }
+        .sidebar-section { padding: 20px 0 8px; }
+        .sidebar-section-title { font-size: 10px; text-transform: uppercase; letter-spacing: 1.2px; color: var(--gray-500); padding: 0 20px 8px; font-weight: 700; }
+        .sidebar-item { padding: 10px 20px; cursor: pointer; font-size: 13px; color: var(--gray-700); border-left: 3px solid transparent; display: flex; align-items: center; justify-content: space-between; transition: all 0.15s; }
+        .sidebar-item:hover { background: var(--gray-50); }
+        .sidebar-item.active { background: var(--blue-light); color: var(--blue-dark); border-left-color: var(--blue); font-weight: 600; }
+        .badge { font-size: 10px; background: var(--gray-100); padding: 2px 8px; border-radius: 10px; font-weight: 600; color: var(--gray-500); }
+        .badge-blue { background: var(--blue-light); color: var(--blue-dark); }
+        .badge-amber { background: var(--amber-light); color: var(--amber); }
+
+        /* ===== TAB NAV ===== */
+        .tab-nav { display: flex; background: white; border-bottom: 1px solid var(--gray-200); padding: 0 20px; }
+        .tab-btn { padding: 14px 20px; font-size: 13px; font-weight: 600; color: var(--gray-500); cursor: pointer; border: none; background: none; border-bottom: 2px solid transparent; transition: all 0.2s; }
+        .tab-btn:hover { color: var(--gray-700); }
+        .tab-btn.active { color: var(--blue); border-bottom-color: var(--blue); }
+
+        /* ===== MAIN ===== */
+        .main { flex: 1; padding: 32px; overflow-y: auto; }
+
+        /* ===== CARD ===== */
+        .card { background: white; border-radius: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.06); border: 1px solid var(--gray-200); margin-bottom: 24px; overflow: hidden; }
+        .card-header { padding: 20px 24px; border-bottom: 1px solid var(--gray-200); display: flex; justify-content: space-between; align-items: center; }
+        .card-header h2, .card-header h3 { font-family: 'Outfit', sans-serif; }
+        .card-body { padding: 24px; }
+
+        /* ===== BUTTONS ===== */
+        .btn { padding: 9px 18px; border-radius: 8px; font-weight: 600; font-size: 12px; cursor: pointer; border: none; display: inline-flex; align-items: center; gap: 6px; transition: all 0.2s; font-family: inherit; }
+        .btn-primary { background: var(--blue); color: white; }
+        .btn-primary:hover { background: var(--blue-dark); }
+        .btn-ghost { background: var(--gray-100); color: var(--gray-700); }
+        .btn-ghost:hover { background: var(--gray-200); }
+        .btn-danger { background: var(--red-light); color: var(--red); }
+        .btn-danger:hover { background: #fee2e2; }
+        .btn-sm { padding: 5px 10px; font-size: 11px; }
+
+        /* ===== FORMS ===== */
+        .form-group { margin-bottom: 16px; }
+        label { display: block; font-size: 12px; font-weight: 700; color: var(--gray-700); margin-bottom: 5px; text-transform: uppercase; letter-spacing: 0.3px; }
+        input, select, textarea { width: 100%; padding: 10px 14px; border-radius: 8px; border: 1.5px solid var(--gray-200); font-family: inherit; font-size: 13px; transition: border-color 0.2s; }
+        input:focus, select:focus, textarea:focus { outline: none; border-color: var(--blue); box-shadow: 0 0 0 3px rgba(14,165,233,0.1); }
+        textarea { min-height: 80px; resize: vertical; }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+        /* ===== TABLE ===== */
+        table { width: 100%; border-collapse: collapse; }
+        th { text-align: left; font-size: 11px; color: var(--gray-500); text-transform: uppercase; padding: 12px 14px; border-bottom: 1px solid var(--gray-200); letter-spacing: 0.5px; }
+        td { padding: 14px; border-bottom: 1px solid var(--gray-100); font-size: 13px; vertical-align: middle; }
+        tr:hover { background: var(--gray-50); }
+
+        /* ===== MODAL ===== */
+        .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 1000; align-items: center; justify-content: center; backdrop-filter: blur(4px); }
+        .modal-overlay.open { display: flex; }
+        .modal { background: white; width: 560px; max-height: 90vh; border-radius: 16px; overflow: hidden; display: flex; flex-direction: column; }
+        .modal-header { padding: 20px 24px; border-bottom: 1px solid var(--gray-200); font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 18px; }
+        .modal-body { padding: 24px; overflow-y: auto; flex: 1; }
+        .modal-footer { padding: 16px 24px; border-top: 1px solid var(--gray-200); display: flex; justify-content: flex-end; gap: 12px; }
+
+        /* ===== LOGO PREVIEW ===== */
+        .logo-preview { width: 120px; height: 50px; border: 1px dashed var(--gray-300); border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-top: 8px; background: var(--gray-50); overflow: hidden; }
+        .logo-preview img { max-width: 100%; max-height: 100%; object-fit: contain; }
+
+        /* ===== ALERT ===== */
+        .alert { position: fixed; bottom: 24px; right: 24px; padding: 14px 24px; border-radius: 10px; color: white; font-weight: 600; font-size: 13px; box-shadow: 0 10px 25px rgba(0,0,0,0.15); z-index: 2000; animation: slideIn 0.3s ease-out; }
+        .alert-success { background: var(--green); }
+        .alert-warning { background: var(--amber); }
+        @keyframes slideIn { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity:1; } }
+
+        /* ===== EMPTY STATE ===== */
+        .empty-state { text-align: center; padding: 60px 20px; }
+        .empty-state svg { width: 48px; height: 48px; color: var(--gray-300); margin-bottom: 16px; }
+        .empty-state h3 { font-family: 'Outfit', sans-serif; font-size: 18px; color: var(--gray-700); margin-bottom: 8px; }
+        .empty-state p { color: var(--gray-500); font-size: 13px; margin-bottom: 20px; }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .layout { flex-direction: column; }
+            .sidebar { width: 100%; border-right: none; border-bottom: 1px solid var(--gray-200); max-height: 200px; }
+            .main { padding: 20px; }
+            .form-row { grid-template-columns: 1fr; }
+            .topbar { padding: 0 16px; }
+            .modal { width: 95%; margin: 0 10px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="topbar">
+    <img src="https://thinkcapital.in/wp-content/uploads/2020/12/think_capital_logo.png" class="logo" alt="Think Capital">
+    <div class="topbar-right">
+        <a href="pe-ma-transactions.html" target="_blank" class="topbar-link">PE & M&A Page</a>
+        <a href="debt-advisory-transactions.html" target="_blank" class="topbar-link">Debt Advisory Page</a>
+        <a href="ongoing-insolvency-assignments.html" target="_blank" class="topbar-link">Insolvency Page</a>
+    </div>
+</div>
+
+<div class="tab-nav">
+    <button class="tab-btn active" onclick="switchTab('pema')">PE & M&A Transactions</button>
+    <button class="tab-btn" onclick="switchTab('debt')">Debt Advisory Transactions</button>
+    <button class="tab-btn" onclick="switchTab('insolvency')">Insolvency Assignments</button>
+</div>
+
+<!-- ===== PE & M&A TAB ===== -->
+<div id="tab-pema" class="layout">
+    <aside class="sidebar">
+        <div style="padding: 16px 20px;">
+            <button class="btn btn-primary" style="width:100%;" onclick="openTxnModal('pema')">+ Add Transaction</button>
+        </div>
+        <div class="sidebar-section">
+            <div class="sidebar-section-title">PE & M&A Transactions</div>
+            <div id="pemaSidebarList"></div>
+        </div>
+    </aside>
+    <main class="main">
+        <div id="pemaWelcome">
+            <div class="empty-state">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                <h3>PE & M&A Transaction Manager</h3>
+                <p>Select a transaction from the sidebar to view or edit its details, or add a new one.</p>
+            </div>
+        </div>
+        <div id="pemaDetail" style="display:none;"></div>
+    </main>
+</div>
+
+<!-- ===== DEBT TAB ===== -->
+<div id="tab-debt" class="layout" style="display:none;">
+    <aside class="sidebar">
+        <div style="padding: 16px 20px;">
+            <button class="btn btn-primary" style="width:100%;" onclick="openTxnModal('debt')">+ Add Transaction</button>
+        </div>
+        <div class="sidebar-section">
+            <div class="sidebar-section-title">Debt Advisory Transactions</div>
+            <div id="debtSidebarList"></div>
+        </div>
+    </aside>
+    <main class="main">
+        <div id="debtWelcome">
+            <div class="empty-state">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+                <h3>Debt Advisory Transaction Manager</h3>
+                <p>Select a transaction from the sidebar to view or edit its details, or add a new one.</p>
+            </div>
+        </div>
+        <div id="debtDetail" style="display:none;"></div>
+    </main>
+</div>
+
+<!-- ===== INSOLVENCY TAB ===== -->
+<div id="tab-insolvency" class="layout" style="display:none;">
+    <aside class="sidebar">
+        <div style="padding: 16px 20px;">
+            <button class="btn btn-primary" style="width:100%;" onclick="openCompanyModal()">+ Add Company</button>
+        </div>
+        <div class="sidebar-section">
+            <div class="sidebar-section-title">Registered Companies</div>
+            <div id="insolvencySidebarList"></div>
+        </div>
+    </aside>
+    <main class="main">
+        <div id="insolvencyWelcome">
+            <div class="empty-state">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="16" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                <h3>Insolvency Assignment Manager</h3>
+                <p>Select a company from the sidebar to manage its documents and details.</p>
+            </div>
+        </div>
+        <div id="insolvencyDetail" style="display:none;"></div>
+    </main>
+</div>
+
+<!-- ===== TRANSACTION MODAL (PE-MA / DEBT) ===== -->
+<div id="txnModal" class="modal-overlay">
+    <div class="modal">
+        <div class="modal-header" id="txnModalTitle">Add Transaction</div>
+        <div class="modal-body">
+            <input type="hidden" id="txnEditId">
+            <input type="hidden" id="txnEditType">
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Company Name *</label>
+                    <input id="txn_name" type="text" placeholder="e.g. Manor Rama Care Pvt Ltd">
+                </div>
+                <div class="form-group">
+                    <label>Subtitle (optional)</label>
+                    <input id="txn_nameSub" type="text" placeholder="e.g. Sale of Dhenkanal Unit">
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Company Logo URL</label>
+                <input id="txn_logo" type="url" placeholder="https://... (leave empty for placeholder)">
+                <div class="logo-preview" id="txnLogoPreview"><span style="color:var(--gray-400);font-size:11px;">Preview</span></div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Transaction Type *</label>
+                    <input id="txn_type" type="text" placeholder="e.g. Investment by, Acquisition by">
+                </div>
+                <div class="form-group">
+                    <label>Service Category *</label>
+                    <select id="txn_service">
+                        <option value="M&A Advisory">M&A Advisory</option>
+                        <option value="Private Equity Advisory">Private Equity Advisory</option>
+                        <option value="Private Equity">Private Equity</option>
+                        <option value="Debt Restructuring Advisory">Debt Restructuring Advisory</option>
+                        <option value="Debt Syndication">Debt Syndication</option>
+                        <option value="Refinancing Advisory">Refinancing Advisory</option>
+                        <option value="Structured Finance">Structured Finance</option>
+                        <option value="Acquisition Finance">Acquisition Finance</option>
+                        <option value="Strategic Advisory">Strategic Advisory</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Counterparty Name *</label>
+                    <input id="txn_counterpartyName" type="text" placeholder="e.g. Warburg Pincus">
+                </div>
+                <div class="form-group">
+                    <label>Counterparty Logo URL</label>
+                    <input id="txn_counterpartyLogo" type="url" placeholder="https://... (optional)">
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-ghost" onclick="closeTxnModal()">Cancel</button>
+            <button class="btn btn-primary" onclick="saveTxnAction()">Save Transaction</button>
+        </div>
+    </div>
+</div>
+
+<!-- ===== INSOLVENCY COMPANY MODAL ===== -->
+<div id="compModal" class="modal-overlay">
+    <div class="modal">
+        <div class="modal-header" id="compModalTitle">Add Company</div>
+        <div class="modal-body">
+            <input type="hidden" id="editCompId">
+            <div class="form-group">
+                <label>Company Name</label>
+                <input id="f_name" type="text">
+            </div>
+            <div class="form-group">
+                <label>Process Status Label</label>
+                <input id="f_status" type="text" placeholder="CIRP, Liquidation, etc.">
+            </div>
+            <div class="form-group">
+                <label>Process Status Theme</label>
+                <select id="f_statusType">
+                    <option value="status-cirp">CIRP (Blue)</option>
+                    <option value="status-liquidation">Liquidation (Red)</option>
+                    <option value="status-external">Neutral (Gray)</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Type</label>
+                <select id="f_type" onchange="toggleFormExt()">
+                    <option value="internal">Internal (Display Documents)</option>
+                    <option value="external">External (Direct Link to Portal)</option>
+                </select>
+            </div>
+            <div id="f_extGroup" class="form-group" style="display:none;">
+                <label>External URL</label>
+                <input id="f_extUrl" type="url">
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-ghost" onclick="closeCompModal()">Cancel</button>
+            <button class="btn btn-primary" onclick="saveCompanyAction()">Save</button>
+        </div>
+    </div>
+</div>
+
+<div id="alertBox"></div>
+
+<!-- DATA LAYERS -->
+<script src="transactions-data.js"></script>
+<script src="insolvency-data.js"></script>
+
+<script>
+    /* ============================================================
+       TAB SWITCHING
+       ============================================================ */
+    let currentTab = 'pema';
+    let activePemaId = null;
+    let activeDebtId = null;
+    let activeInsolvencyId = null;
+
+    function switchTab(tab) {
+        currentTab = tab;
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.layout').forEach(l => l.style.display = 'none');
+
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        if (tab === 'pema') { tabBtns[0].classList.add('active'); document.getElementById('tab-pema').style.display = 'flex'; }
+        else if (tab === 'debt') { tabBtns[1].classList.add('active'); document.getElementById('tab-debt').style.display = 'flex'; }
+        else { tabBtns[2].classList.add('active'); document.getElementById('tab-insolvency').style.display = 'flex'; }
+    }
+
+    /* ============================================================
+       PE & M&A TRANSACTIONS
+       ============================================================ */
+    function renderPemaSidebar() {
+        const data = getPEMATransactions();
+        const list = document.getElementById('pemaSidebarList');
+        list.innerHTML = data.map(t => `
+            <div class="sidebar-item ${activePemaId === t.id ? 'active' : ''}" onclick="selectPema('${t.id}')">
+                <span style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:180px;">${t.name}</span>
+                <span class="badge badge-blue">${t.service.split(' ')[0]}</span>
+            </div>
+        `).join('');
+    }
+
+    function selectPema(id) {
+        activePemaId = id;
+        renderPemaSidebar();
+        const t = getPEMATransactionById(id);
+        if (!t) return;
+
+        document.getElementById('pemaWelcome').style.display = 'none';
+        const detail = document.getElementById('pemaDetail');
+        detail.style.display = 'block';
+        detail.innerHTML = renderTxnDetail(t, 'pema');
+    }
+
+    /* ============================================================
+       DEBT ADVISORY TRANSACTIONS
+       ============================================================ */
+    function renderDebtSidebar() {
+        const data = getDebtTransactions();
+        const list = document.getElementById('debtSidebarList');
+        list.innerHTML = data.map(t => `
+            <div class="sidebar-item ${activeDebtId === t.id ? 'active' : ''}" onclick="selectDebt('${t.id}')">
+                <span style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:180px;">${t.name}</span>
+                <span class="badge badge-amber">${t.service.split(' ')[0]}</span>
+            </div>
+        `).join('');
+    }
+
+    function selectDebt(id) {
+        activeDebtId = id;
+        renderDebtSidebar();
+        const t = getDebtTransactionById(id);
+        if (!t) return;
+
+        document.getElementById('debtWelcome').style.display = 'none';
+        const detail = document.getElementById('debtDetail');
+        detail.style.display = 'block';
+        detail.innerHTML = renderTxnDetail(t, 'debt');
+    }
+
+    /* ============================================================
+       SHARED TRANSACTION DETAIL RENDERER
+       ============================================================ */
+    function renderTxnDetail(t, type) {
+        const logoSrc = t.logo || PLACEHOLDER_LOGO;
+        const cpLogoSrc = t.counterpartyLogo || '';
+        return `
+            <div class="card">
+                <div class="card-header">
+                    <div style="display:flex;align-items:center;gap:16px;">
+                        <div style="width:80px;height:40px;display:flex;align-items:center;">
+                            <img src="${logoSrc}" alt="${t.name}" style="max-height:100%;max-width:100%;object-fit:contain;" onerror="this.src='${PLACEHOLDER_LOGO}'">
+                        </div>
+                        <div>
+                            <h2 style="font-size:18px;">${t.name}</h2>
+                            ${t.nameSub ? `<span style="color:var(--gray-500);font-size:12px;">${t.nameSub}</span>` : ''}
+                        </div>
+                    </div>
+                    <div style="display:flex;gap:10px;">
+                        <button class="btn btn-ghost btn-sm" onclick="editTxn('${t.id}','${type}')">Edit</button>
+                        <button class="btn btn-danger btn-sm" onclick="deleteTxn('${t.id}','${type}')">Delete</button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <table>
+                        <tr><td style="font-weight:600;width:180px;color:var(--gray-500);">Transaction Type</td><td>${t.type}</td></tr>
+                        <tr><td style="font-weight:600;color:var(--gray-500);">Service Category</td><td>${t.service}</td></tr>
+                        <tr><td style="font-weight:600;color:var(--gray-500);">Counterparty</td><td style="display:flex;align-items:center;gap:12px;">
+                            ${cpLogoSrc ? `<img src="${cpLogoSrc}" style="height:28px;object-fit:contain;" onerror="this.style.display='none'">` : ''}
+                            ${t.counterpartyName}
+                        </td></tr>
+                        <tr><td style="font-weight:600;color:var(--gray-500);">Company Logo URL</td><td style="font-size:12px;color:var(--gray-500);word-break:break-all;">${t.logo || 'Using placeholder'}</td></tr>
+                        <tr><td style="font-weight:600;color:var(--gray-500);">Counterparty Logo URL</td><td style="font-size:12px;color:var(--gray-500);word-break:break-all;">${t.counterpartyLogo || 'None'}</td></tr>
+                    </table>
+                </div>
+            </div>
+        `;
+    }
+
+    /* ============================================================
+       TRANSACTION MODAL (ADD / EDIT)
+       ============================================================ */
+    function openTxnModal(type) {
+        document.getElementById('txnModalTitle').textContent = 'Add Transaction';
+        document.getElementById('txnEditId').value = '';
+        document.getElementById('txnEditType').value = type;
+        document.getElementById('txn_name').value = '';
+        document.getElementById('txn_nameSub').value = '';
+        document.getElementById('txn_logo').value = '';
+        document.getElementById('txn_type').value = '';
+        document.getElementById('txn_service').value = type === 'debt' ? 'Debt Syndication' : 'M&A Advisory';
+        document.getElementById('txn_counterpartyName').value = '';
+        document.getElementById('txn_counterpartyLogo').value = '';
+        document.getElementById('txnLogoPreview').innerHTML = '<span style="color:var(--gray-400);font-size:11px;">Preview</span>';
+        document.getElementById('txnModal').classList.add('open');
+    }
+
+    function closeTxnModal() {
+        document.getElementById('txnModal').classList.remove('open');
+    }
+
+    function editTxn(id, type) {
+        const t = type === 'pema' ? getPEMATransactionById(id) : getDebtTransactionById(id);
+        if (!t) return;
+        document.getElementById('txnModalTitle').textContent = 'Edit Transaction';
+        document.getElementById('txnEditId').value = t.id;
+        document.getElementById('txnEditType').value = type;
+        document.getElementById('txn_name').value = t.name;
+        document.getElementById('txn_nameSub').value = t.nameSub || '';
+        document.getElementById('txn_logo').value = (t.logo && t.logo !== PLACEHOLDER_LOGO) ? t.logo : '';
+        document.getElementById('txn_type').value = t.type;
+        document.getElementById('txn_service').value = t.service;
+        document.getElementById('txn_counterpartyName').value = t.counterpartyName;
+        document.getElementById('txn_counterpartyLogo').value = t.counterpartyLogo || '';
+
+        const preview = document.getElementById('txnLogoPreview');
+        if (t.logo) {
+            preview.innerHTML = `<img src="${t.logo}" onerror="this.parentElement.innerHTML='<span style=color:var(--gray-400);font-size:11px>Failed to load</span>'">`;
+        }
+        document.getElementById('txnModal').classList.add('open');
+    }
+
+    function saveTxnAction() {
+        const editId = document.getElementById('txnEditId').value;
+        const type = document.getElementById('txnEditType').value;
+        const name = document.getElementById('txn_name').value.trim();
+        const nameSub = document.getElementById('txn_nameSub').value.trim();
+        const logo = document.getElementById('txn_logo').value.trim();
+        const txnType = document.getElementById('txn_type').value.trim();
+        const service = document.getElementById('txn_service').value;
+        const cpName = document.getElementById('txn_counterpartyName').value.trim();
+        const cpLogo = document.getElementById('txn_counterpartyLogo').value.trim();
+
+        if (!name || !txnType || !cpName) return toast('Company name, transaction type, and counterparty are required.', 'warning');
+
+        const getData = type === 'pema' ? getPEMATransactions : getDebtTransactions;
+        const saveData = type === 'pema' ? savePEMATransactions : saveDebtTransactions;
+
+        let data = getData();
+
+        if (editId) {
+            const idx = data.findIndex(x => x.id === editId);
+            if (idx >= 0) {
+                data[idx] = { ...data[idx], name, nameSub, logo: logo || PLACEHOLDER_LOGO, logoAlt: name, type: txnType, service, counterpartyName: cpName, counterpartyLogo: cpLogo };
+            }
+        } else {
+            data.push({
+                id: generateTransactionId(name),
+                name, nameSub,
+                logo: logo || PLACEHOLDER_LOGO,
+                logoAlt: name,
+                type: txnType,
+                service,
+                counterpartyName: cpName,
+                counterpartyLogo: cpLogo
+            });
+        }
+
+        saveData(data);
+        closeTxnModal();
+
+        if (type === 'pema') {
+            renderPemaSidebar();
+            if (activePemaId) selectPema(editId || activePemaId);
+        } else {
+            renderDebtSidebar();
+            if (activeDebtId) selectDebt(editId || activeDebtId);
+        }
+        toast('Transaction saved successfully!');
+    }
+
+    function deleteTxn(id, type) {
+        if (!confirm('Delete this transaction permanently?')) return;
+        const getData = type === 'pema' ? getPEMATransactions : getDebtTransactions;
+        const saveData = type === 'pema' ? savePEMATransactions : saveDebtTransactions;
+
+        let data = getData().filter(x => x.id !== id);
+        saveData(data);
+
+        if (type === 'pema') {
+            activePemaId = null;
+            renderPemaSidebar();
+            document.getElementById('pemaDetail').style.display = 'none';
+            document.getElementById('pemaWelcome').style.display = 'block';
+        } else {
+            activeDebtId = null;
+            renderDebtSidebar();
+            document.getElementById('debtDetail').style.display = 'none';
+            document.getElementById('debtWelcome').style.display = 'block';
+        }
+        toast('Transaction deleted.');
+    }
+
+    /* ============================================================
+       INSOLVENCY ASSIGNMENTS (existing functionality)
+       ============================================================ */
+    function renderInsolvencySidebar() {
+        const data = getAssignments();
+        const list = document.getElementById('insolvencySidebarList');
+        list.innerHTML = data.map(a => `
+            <div class="sidebar-item ${activeInsolvencyId === a.id ? 'active' : ''}" onclick="selectInsolvency('${a.id}')">
+                <span style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:180px;">${a.name}</span>
+                <span class="badge">${a.type === 'internal' ? a.documents.length : 'EXT'}</span>
+            </div>
+        `).join('');
+    }
+
+    function selectInsolvency(id) {
+        activeInsolvencyId = id;
+        renderInsolvencySidebar();
+        const a = getAssignmentById(id);
+        if (!a) return;
+
+        document.getElementById('insolvencyWelcome').style.display = 'none';
+        const detail = document.getElementById('insolvencyDetail');
+        detail.style.display = 'block';
+
+        let content = `
+            <div class="card">
+                <div class="card-header">
+                    <div>
+                        <h2 style="font-size:18px;">${a.name}</h2>
+                        <span class="badge" style="margin-top:4px;display:inline-block;">${a.status}</span>
+                    </div>
+                    <div style="display:flex;gap:10px;">
+                        <button class="btn btn-ghost btn-sm" onclick="editCurrentCompany()">Edit</button>
+                        <button class="btn btn-danger btn-sm" onclick="deleteCurrentCompany()">Delete</button>
+                    </div>
+                </div>
+            </div>`;
+
+        if (a.type === 'internal') {
+            content += `
+            <div class="card">
+                <div class="card-header">
+                    <h3 style="font-size:16px;">Document Management</h3>
+                </div>
+                <div class="card-body">
+                    <table>
+                        <thead><tr><th>Name</th><th>URL</th><th style="width:80px;"></th></tr></thead>
+                        <tbody id="docsTableBody">
+                            ${a.documents.map(d => `
+                                <tr>
+                                    <td style="font-weight:600;">${d.name}</td>
+                                    <td style="color:var(--gray-500);font-size:11px;word-break:break-all;">${d.url}</td>
+                                    <td style="text-align:right;"><button class="btn btn-danger btn-sm" onclick="removeDoc('${d.id}')">Delete</button></td>
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    </table>
+                    <div style="margin-top:24px;background:var(--gray-50);padding:16px;border-radius:10px;border:1px dashed var(--gray-300);">
+                        <div style="font-size:13px;font-weight:700;margin-bottom:10px;">Add Document</div>
+                        <div style="display:flex;gap:12px;align-items:flex-end;">
+                            <div style="flex:1;"><label>Title</label><input id="newDocName" type="text" placeholder="e.g. Claim Form D"></div>
+                            <div style="flex:2;"><label>PDF URL</label><input id="newDocUrl" type="url" placeholder="https://..."></div>
+                            <button class="btn btn-primary" onclick="addDocumentToCompany()">Add</button>
+                        </div>
+                    </div>
+                </div>
+            </div>`;
+        } else {
+            content += `
+            <div class="card">
+                <div class="card-body" style="text-align:center;padding:40px;">
+                    <p style="margin-bottom:12px;color:var(--gray-500);">This company links to an external portal:</p>
+                    <a href="${a.externalUrl}" target="_blank" style="color:var(--blue);font-weight:600;">${a.externalUrl}</a>
+                </div>
+            </div>`;
+        }
+
+        detail.innerHTML = content;
+    }
+
+    function addDocumentToCompany() {
+        const name = document.getElementById('newDocName').value.trim();
+        const url = document.getElementById('newDocUrl').value.trim();
+        if (!name || !url) return toast('Full details required', 'warning');
+
+        const data = getAssignments();
+        const a = data.find(x => x.id === activeInsolvencyId);
+        a.documents.push({ id: newDocId(), name, url });
+        saveAssignments(data);
+        selectInsolvency(activeInsolvencyId);
+        renderInsolvencySidebar();
+        toast('Document added');
+    }
+
+    function removeDoc(docId) {
+        if (!confirm('Delete this document?')) return;
+        const data = getAssignments();
+        const a = data.find(x => x.id === activeInsolvencyId);
+        a.documents = a.documents.filter(d => d.id !== docId);
+        saveAssignments(data);
+        selectInsolvency(activeInsolvencyId);
+        renderInsolvencySidebar();
+        toast('Document removed');
+    }
+
+    /* ===== Insolvency Company Modal ===== */
+    function openCompanyModal() {
+        document.getElementById('compModalTitle').textContent = 'Add Company';
+        document.getElementById('editCompId').value = '';
+        document.getElementById('f_name').value = '';
+        document.getElementById('f_status').value = '';
+        document.getElementById('f_statusType').value = 'status-cirp';
+        document.getElementById('f_type').value = 'internal';
+        document.getElementById('f_extUrl').value = '';
+        toggleFormExt();
+        document.getElementById('compModal').classList.add('open');
+    }
+
+    function closeCompModal() { document.getElementById('compModal').classList.remove('open'); }
+
+    function toggleFormExt() {
+        const isExt = document.getElementById('f_type').value === 'external';
+        document.getElementById('f_extGroup').style.display = isExt ? 'block' : 'none';
+    }
+
+    function saveCompanyAction() {
+        const editId = document.getElementById('editCompId').value;
+        const name = document.getElementById('f_name').value.trim();
+        const status = document.getElementById('f_status').value.trim();
+        const statusType = document.getElementById('f_statusType').value;
+        const type = document.getElementById('f_type').value;
+        const extUrl = document.getElementById('f_extUrl').value.trim();
+
+        if (!name || !status) return toast('Basic details required', 'warning');
+
+        let data = getAssignments();
+        if (editId) {
+            const a = data.find(x => x.id === editId);
+            a.name = name; a.status = status; a.statusType = statusType; a.type = type; a.externalUrl = extUrl;
+        } else {
+            data.push({ id: slugify(name), name, status, statusType, type, externalUrl: extUrl, documents: [] });
+        }
+        saveAssignments(data);
+        closeCompModal();
+        renderInsolvencySidebar();
+        if (activeInsolvencyId) selectInsolvency(activeInsolvencyId);
+        toast('Company saved');
+    }
+
+    function editCurrentCompany() {
+        const a = getAssignmentById(activeInsolvencyId);
+        document.getElementById('compModalTitle').textContent = 'Edit Company';
+        document.getElementById('editCompId').value = a.id;
+        document.getElementById('f_name').value = a.name;
+        document.getElementById('f_status').value = a.status;
+        document.getElementById('f_statusType').value = a.statusType;
+        document.getElementById('f_type').value = a.type;
+        document.getElementById('f_extUrl').value = a.externalUrl;
+        toggleFormExt();
+        document.getElementById('compModal').classList.add('open');
+    }
+
+    function deleteCurrentCompany() {
+        if (!confirm('Delete this company forever?')) return;
+        let data = getAssignments().filter(x => x.id !== activeInsolvencyId);
+        saveAssignments(data);
+        activeInsolvencyId = null;
+        renderInsolvencySidebar();
+        document.getElementById('insolvencyDetail').style.display = 'none';
+        document.getElementById('insolvencyWelcome').style.display = 'block';
+        toast('Company deleted');
+    }
+
+    /* ============================================================
+       UTILITIES
+       ============================================================ */
+    function toast(msg, type = 'success') {
+        const box = document.getElementById('alertBox');
+        box.innerHTML = `<div class="alert alert-${type}">${msg}</div>`;
+        setTimeout(() => box.innerHTML = '', 3000);
+    }
+
+    // Logo preview on URL input
+    document.getElementById('txn_logo').addEventListener('input', function() {
+        const preview = document.getElementById('txnLogoPreview');
+        if (this.value.trim()) {
+            preview.innerHTML = `<img src="${this.value}" onerror="this.parentElement.innerHTML='<span style=color:var(--gray-400);font-size:11px>Invalid URL</span>'">`;
+        } else {
+            preview.innerHTML = '<span style="color:var(--gray-400);font-size:11px;">Preview</span>';
+        }
+    });
+
+    /* ============================================================
+       INIT
+       ============================================================ */
+    window.onload = function() {
+        renderPemaSidebar();
+        renderDebtSidebar();
+        renderInsolvencySidebar();
+    };
+</script>
+</body>
+</html>

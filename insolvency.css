@@ -1,0 +1,324 @@
+/* ========================================
+   INSOLVENCY PAGES – SUPPLEMENTARY STYLES
+   ======================================== */
+
+/* ===== SUBPAGE HERO ===== */
+.subpage-hero {
+    position: relative;
+    padding: 160px 24px 80px;
+    background: #f5f7f9;
+    text-align: center;
+    overflow: hidden;
+}
+
+.subpage-hero-bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+        radial-gradient(circle at 2px 2px, rgba(16, 45, 84, 0.04) 1px, transparent 0);
+    background-size: 40px 40px;
+    mask-image: radial-gradient(ellipse at center, black 40%, transparent 85%);
+    -webkit-mask-image: radial-gradient(ellipse at center, black 40%, transparent 85%);
+}
+
+.breadcrumb {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: #525252;
+    margin-bottom: 20px;
+    font-family: 'Inter', sans-serif;
+}
+
+.breadcrumb a {
+    color: #0284c7;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.breadcrumb a:hover {
+    color: #0369a1;
+}
+
+.breadcrumb svg {
+    color: #9ca3af;
+}
+
+.subpage-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: clamp(28px, 5vw, 48px);
+    font-weight: 800;
+    color: #0a1628;
+    margin-bottom: 16px;
+    line-height: 1.15;
+}
+
+.subpage-subtitle {
+    font-size: 16px;
+    color: #525252;
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.7;
+}
+
+/* ===== ASSIGNMENTS GRID ===== */
+.insolvency-section {
+    padding: 60px 0 80px;
+}
+
+.assignments-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.assignment-card {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    padding: 28px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.assignment-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(to bottom, #0ea5e9, #0284c7);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.assignment-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(10, 22, 40, 0.1);
+    border-color: #bae6fd;
+}
+
+.assignment-card:hover::before {
+    opacity: 1;
+}
+
+.card-internal {
+    border-color: #bae6fd;
+    background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%);
+}
+
+.card-icon {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(14, 165, 233, 0.08);
+    border-radius: 12px;
+    flex-shrink: 0;
+}
+
+.card-icon svg {
+    width: 22px;
+    height: 22px;
+    stroke: #0284c7;
+}
+
+.card-body {
+    flex: 1;
+}
+
+.card-body h3 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: #0a1628;
+    margin-bottom: 8px;
+    line-height: 1.3;
+}
+
+.card-status {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 50px;
+}
+
+.status-external {
+    background: #f3f4f6;
+    color: #525252;
+}
+
+.status-liquidation {
+    background: rgba(239, 68, 68, 0.08);
+    color: #dc2626;
+}
+
+.status-cirp {
+    background: rgba(14, 165, 233, 0.08);
+    color: #0284c7;
+}
+
+.card-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: #0284c7;
+    text-decoration: none;
+    padding: 8px 0;
+    border-top: 1px solid #f3f4f6;
+    transition: all 0.3s ease;
+}
+
+.card-link:hover {
+    color: #0369a1;
+    gap: 10px;
+}
+
+/* ===== DOCUMENTS PAGE ===== */
+.documents-section {
+    padding: 60px 0 80px;
+}
+
+.documents-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.document-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+    padding: 20px 24px;
+    text-decoration: none;
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.document-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(10, 22, 40, 0.08);
+    border-color: #bae6fd;
+}
+
+.doc-icon {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(239, 68, 68, 0.06);
+    border-radius: 12px;
+}
+
+.doc-icon svg {
+    width: 22px;
+    height: 22px;
+    stroke: #dc2626;
+}
+
+.doc-info {
+    flex: 1;
+}
+
+.doc-info h4 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: #0a1628;
+    line-height: 1.4;
+    margin-bottom: 4px;
+}
+
+.doc-info span {
+    font-size: 12px;
+    color: #9ca3af;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.doc-arrow {
+    width: 20px;
+    height: 20px;
+    color: #d1d5db;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+
+.document-item:hover .doc-arrow {
+    color: #0284c7;
+    transform: translateX(4px);
+}
+
+/* ===== BACK LINK ===== */
+.back-link-wrap {
+    margin-bottom: 40px;
+}
+
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: #0284c7;
+    text-decoration: none;
+    padding: 10px 20px;
+    border: 1.5px solid #bae6fd;
+    border-radius: 10px;
+    background: rgba(14, 165, 233, 0.04);
+    transition: all 0.3s;
+}
+
+.back-link:hover {
+    background: rgba(14, 165, 233, 0.08);
+    border-color: #0ea5e9;
+    gap: 12px;
+}
+
+.back-link svg {
+    transition: transform 0.3s;
+}
+
+.back-link:hover svg {
+    transform: translateX(-3px);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+    .assignments-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .documents-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 640px) {
+    .assignments-grid {
+        grid-template-columns: 1fr;
+    }
+    .subpage-hero {
+        padding: 120px 16px 40px;
+    }
+}
