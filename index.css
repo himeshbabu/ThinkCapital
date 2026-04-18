@@ -584,7 +584,7 @@ body.home-page #navbar:not(.scrolled) {
 }
 
 .hero-title {
-    font-size: clamp(42px, 7vw, 80px);
+    font-size: clamp(42px, 5vw, 80px);
     font-weight: 700;
     color: var(--primary-900);
     line-height: 1.05;
