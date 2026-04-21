@@ -208,7 +208,8 @@ ul {
     width: 100%;
     z-index: 1000;
     padding: 12px 0;
-    background: rgba(255, 255, 255, 0.98); /* Solid by default for subpages */
+    background: rgba(255, 255, 255, 0.98);
+    /* Solid by default for subpages */
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     box-shadow: 0 4px 30px rgba(10, 22, 40, 0.05);
@@ -251,19 +252,23 @@ body.home-page #navbar:not(.scrolled) {
 .nav-links {
     display: flex;
     align-items: center;
-    gap: 32px; /* Increased gap to prevent squashing */
+    gap: 32px;
+    /* Increased gap to prevent squashing */
 }
 
 .nav-link {
     position: relative;
     color: var(--primary-700);
     font-family: var(--font-primary);
-    font-size: 15px; /* Slightly larger */
-    font-weight: 600; /* Bolder */
+    font-size: 15px;
+    /* Slightly larger */
+    font-weight: 600;
+    /* Bolder */
     padding: 8px 0;
     transition: var(--transition-base);
     letter-spacing: 0.3px;
-    white-space: nowrap; /* Prevent wrapping */
+    white-space: nowrap;
+    /* Prevent wrapping */
 }
 
 .nav-link:hover {
@@ -379,7 +384,7 @@ body.home-page #navbar:not(.scrolled) {
     background: #f5f7f9;
     position: relative;
     overflow: hidden;
-    padding: 100px 24px 60px;
+    padding: 100px 24px 0;
 }
 
 .hero-grid-bg {
@@ -866,6 +871,7 @@ body.home-page #navbar:not(.scrolled) {
 /* ===== ABOUT SECTION ===== */
 .about-section {
     background: var(--neutral-50);
+    padding-bottom: 5px;
 }
 
 .about-vision-banner {
@@ -1137,6 +1143,7 @@ body.home-page #navbar:not(.scrolled) {
 /* Advisory Section */
 .advisory-section {
     background: var(--neutral-50);
+    padding-top: 0;
 }
 
 .advisors-grid {
@@ -1271,6 +1278,7 @@ body.home-page #navbar:not(.scrolled) {
 /* ===== NEW SERVICES SECTION (Roll Down UI) ===== */
 .services-section {
     background: var(--neutral-50);
+    padding-top: 0;
 }
 
 .services-windows-container {
@@ -1484,10 +1492,17 @@ body.home-page #navbar:not(.scrolled) {
 }
 
 /* (Cleanup old Tab/Service CSS) */
+#major-assignments {
+    padding-top: 0 !important;
+    padding-bottom: 30px !important;
+    background: var(--neutral-50);
+}
 
 /* ===== TEAM SECTION ===== */
 .team-section {
     background: var(--neutral-50);
+    padding-top: 0;
+    padding-bottom: 10px;
 }
 
 .team-category {
@@ -1651,6 +1666,7 @@ body.home-page #navbar:not(.scrolled) {
 /* ===== CONTACT & CAREERS SECTION (SIDE-BY-SIDE) ===== */
 .contact-careers-section {
     background: var(--neutral-50);
+    padding-top: 0;
 }
 
 .contact-info-bar {
@@ -1919,9 +1935,21 @@ body.home-page #navbar:not(.scrolled) {
 }
 
 /* Color Themes for each card */
-.quick-link-btn.theme-pe { --card-accent: #10b981; }      /* Emerald */
-.quick-link-btn.theme-debt { --card-accent: #f59e0b; }    /* Gold */
-.quick-link-btn.theme-tracker { --card-accent: #0ea5e9; } /* Blue */
+.quick-link-btn.theme-pe {
+    --card-accent: #10b981;
+}
+
+/* Emerald */
+.quick-link-btn.theme-debt {
+    --card-accent: #f59e0b;
+}
+
+/* Gold */
+.quick-link-btn.theme-tracker {
+    --card-accent: #0ea5e9;
+}
+
+/* Blue */
 
 .item-icon-box {
     width: 56px;
@@ -1935,9 +1963,20 @@ body.home-page #navbar:not(.scrolled) {
     transition: all 0.4s ease;
 }
 
-.quick-link-btn.theme-pe { --card-accent: #10b981; --card-bg-light: #ecfdf5; }
-.quick-link-btn.theme-debt { --card-accent: #f59e0b; --card-bg-light: #fffbeb; }
-.quick-link-btn.theme-tracker { --card-accent: #0ea5e9; --card-bg-light: #f0f9ff; }
+.quick-link-btn.theme-pe {
+    --card-accent: #10b981;
+    --card-bg-light: #ecfdf5;
+}
+
+.quick-link-btn.theme-debt {
+    --card-accent: #f59e0b;
+    --card-bg-light: #fffbeb;
+}
+
+.quick-link-btn.theme-tracker {
+    --card-accent: #0ea5e9;
+    --card-bg-light: #f0f9ff;
+}
 
 .quick-link-btn svg {
     width: 32px;
@@ -2111,7 +2150,7 @@ body.home-page #navbar:not(.scrolled) {
     }
 
     .section-header {
-        margin-bottom: 50px;
+        margin-bottom: 10px;
     }
 
     .careers-form-wrap,
@@ -2155,15 +2194,16 @@ body.home-page #navbar:not(.scrolled) {
 .transaction-card {
     background: #ffffff;
     border: 1px solid #e2e8f0;
-    padding: 28px 20px;
+    border-radius: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    min-height: 340px;
+    min-height: 280px;
     position: relative;
-    justify-content: space-between;
+    overflow: hidden;
+    perspective: 1000px;
 }
 
 .transaction-card:hover {
@@ -2174,26 +2214,68 @@ body.home-page #navbar:not(.scrolled) {
 }
 
 .tc-logo-wrap {
-    height: 80px;
+    height: 100%;
+    width: 100%;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-bottom: 20px;
-    width: 100%;
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    position: absolute;
+    inset: 0;
+    background: #ffffff;
+    z-index: 1;
+    /* Behind content */
+    padding: 24px;
+}
+
+/* Don't hide logo wrap anymore */
+.transaction-card:hover .tc-logo-wrap {
+    transform: none;
+    opacity: 1;
 }
 
 .tc-main-logo {
-    max-height: 100%;
-    max-width: 180px;
+    max-height: 70px;
+    max-width: 80%;
     object-fit: contain;
+    margin-bottom: 16px;
 }
 
 .tc-content {
-    flex-grow: 1;
+    height: 100%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 100%;
+    padding: 24px;
+    background: rgba(10, 22, 40, 0.7);
+    /* 70% dark overlay */
+    color: #ffffff;
+    position: absolute;
+    inset: 0;
+    transform: translateY(-100%);
+    opacity: 0;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 3;
+    backdrop-filter: blur(4px);
+}
+
+.transaction-card:hover .tc-content {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* White text for overlay */
+.tc-content .tc-entity-name,
+.tc-content .tc-entity-sub,
+.tc-content .tc-label,
+.tc-content .tc-counterparty-name {
+    color: #ffffff !important;
+}
+
+.tc-content .tc-details {
+    border-top-color: rgba(255, 255, 255, 0.1);
 }
 
 .tc-entity-name {
@@ -2213,25 +2295,17 @@ body.home-page #navbar:not(.scrolled) {
 }
 
 .tc-details {
-    max-height: 0;
-    overflow: hidden;
-    margin: 0;
-    padding: 0;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    transform: translateY(10px);
-    border-top: 1px solid transparent;
-}
-
-.transaction-card:hover .tc-details {
-    max-height: 200px;
     margin-top: 15px;
     padding-top: 15px;
+    border-top: 1px solid #f1f5f9;
+}
+
+/* Removed transition override from here as it's now handled by tc-content hover */
+.transaction-card .tc-details {
+    max-height: none;
     opacity: 1;
     visibility: visible;
-    transform: translateY(0);
-    border-top: 1px solid #f1f5f9;
+    transform: none;
 }
 
 .tc-label {
@@ -2290,6 +2364,7 @@ body.home-page #navbar:not(.scrolled) {
     .transaction-grid {
         grid-template-columns: 1fr;
     }
+
     .transaction-card {
         padding: 20px;
         min-height: auto;
