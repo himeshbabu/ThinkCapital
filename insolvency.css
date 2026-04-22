@@ -5,7 +5,7 @@
 /* ===== SUBPAGE HERO ===== */
 .subpage-hero {
     position: relative;
-    padding: 160px 24px 80px;
+    padding: 160px 24px 30px;
     background: #f5f7f9;
     text-align: center;
     overflow: hidden;
@@ -192,7 +192,7 @@
 
 /* ===== DOCUMENTS PAGE ===== */
 .documents-section {
-    padding: 60px 0 80px;
+    padding: 1px 0 80px;
 }
 
 .documents-grid {
