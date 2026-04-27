@@ -23,24 +23,28 @@
         .assignments-table-container {
             width: 100%;
             overflow-x: auto;
-            padding: 10px; /* Space for row hover lift */
+            padding: 10px;
+            /* Space for row hover lift */
         }
 
         .assignments-table {
             width: 100%;
             border-collapse: separate;
-            border-spacing: 0 14px; /* Creates the gap between 'bended' rows */
+            border-spacing: 0 14px;
+            /* Creates the gap between 'bended' rows */
             text-align: left;
             min-width: 900px;
         }
 
         .assignments-table th {
             padding: 16px 28px;
-            background: var(--primary-900); /* Premium Navy */
+            background: var(--primary-900);
+            /* Premium Navy */
             font-family: 'Outfit', sans-serif;
             font-size: 13px;
             font-weight: 700;
-            color: #ffffff; /* White text for contrast */
+            color: #ffffff;
+            /* White text for contrast */
             text-transform: uppercase;
             letter-spacing: 0.1em;
             border-bottom: none;
@@ -50,6 +54,7 @@
         .assignments-table th:first-child {
             border-top-left-radius: 16px;
         }
+
         .assignments-table th:last-child {
             border-top-right-radius: 16px;
         }
@@ -71,6 +76,7 @@
             border-top-left-radius: 16px;
             border-bottom-left-radius: 16px;
         }
+
         .assignments-table tr td:last-child {
             border-right: 1px solid #f1f5f9;
             border-top-right-radius: 16px;
@@ -88,6 +94,7 @@
         .assignments-table tr:hover td:first-child {
             box-shadow: -10px 12px 24px rgba(10, 22, 40, 0.08);
         }
+
         .assignments-table tr:hover td:last-child {
             box-shadow: 10px 12px 24px rgba(10, 22, 40, 0.08);
         }
@@ -97,6 +104,7 @@
             width: 70px;
             text-align: center;
         }
+
         .sr-badge {
             display: inline-flex;
             align-items: center;
@@ -128,9 +136,24 @@
             text-transform: uppercase;
             letter-spacing: 0.05em;
         }
-        .status-pill.status-liquidation { background: #fef2f2; color: #dc2626; border: 1px solid #fee2e2; }
-        .status-pill.status-cirp { background: #f0f9ff; color: #0ea5e9; border: 1px solid #e0f2fe; }
-        .status-pill.status-external { background: #f8fafc; color: #64748b; border: 1px solid #f1f5f9; }
+
+        .status-pill.status-liquidation {
+            background: #fef2f2;
+            color: #dc2626;
+            border: 1px solid #fee2e2;
+        }
+
+        .status-pill.status-cirp {
+            background: #f0f9ff;
+            color: #0ea5e9;
+            border: 1px solid #e0f2fe;
+        }
+
+        .status-pill.status-external {
+            background: #f8fafc;
+            color: #64748b;
+            border: 1px solid #f1f5f9;
+        }
 
         /* Premium Action Link */
         .table-action-link {
@@ -160,10 +183,11 @@
         }
 
         @media (max-width: 768px) {
-             .assignments-table th:first-child, 
-             .assignments-table td:first-child {
-                 display: none;
-             }
+
+            .assignments-table th:first-child,
+            .assignments-table td:first-child {
+                display: none;
+            }
         }
     </style>
 </head>
@@ -178,10 +202,12 @@
             <ul class="nav-links" id="navLinks">
                 <li><a href="index.html#hero" class="nav-link" data-section="hero">Home</a></li>
                 <li><a href="index.html#about" class="nav-link" data-section="about">About Us</a></li>
-                <li><a href="index.html#advisory-board" class="nav-link" data-section="advisory-board">Advisory Board</a></li>
+                <li><a href="index.html#advisory-board" class="nav-link" data-section="advisory-board">Advisory
+                        Board</a></li>
                 <li><a href="index.html#team" class="nav-link" data-section="team">Professional Team</a></li>
                 <li><a href="index.html#services" class="nav-link" data-section="services">Our Services</a></li>
-                <li><a href="ongoing-insolvency-assignments.html" class="nav-link active" data-section="insolvency">Insolvency</a></li>
+                <li><a href="ongoing-insolvency-assignments.html" class="nav-link active"
+                        data-section="insolvency">Insolvency</a></li>
                 <li><a href="index.html#contact" class="nav-link" data-section="contact">Contact & Careers</a></li>
             </ul>
             <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
@@ -193,10 +219,12 @@
         <ul class="mobile-nav-links">
             <li><a href="index.html#hero" class="mobile-link" data-section="hero">Home</a></li>
             <li><a href="index.html#about" class="mobile-link" data-section="about">About Us</a></li>
-            <li><a href="index.html#advisory-board" class="mobile-link" data-section="advisory-board">Advisory Board</a></li>
+            <li><a href="index.html#advisory-board" class="mobile-link" data-section="advisory-board">Advisory Board</a>
+            </li>
             <li><a href="index.html#team" class="mobile-link" data-section="team">Professional Team</a></li>
             <li><a href="index.html#services" class="mobile-link" data-section="services">Our Services</a></li>
-            <li><a href="ongoing-insolvency-assignments.html" class="mobile-link active" data-section="insolvency">Insolvency</a></li>
+            <li><a href="ongoing-insolvency-assignments.html" class="mobile-link active"
+                    data-section="insolvency">Insolvency</a></li>
             <li><a href="index.html#contact" class="mobile-link" data-section="contact">Contact & Careers</a></li>
         </ul>
     </div>
@@ -207,11 +235,14 @@
         <div class="container">
             <nav class="breadcrumb">
                 <a href="index.html">Home</a>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 18l6-6-6-6" />
+                </svg>
                 <span>Insolvency Assignments</span>
             </nav>
             <h1 class="subpage-title">Ongoing Insolvency Assignments</h1>
-            <p class="subpage-subtitle">Think Capital acts as the Insolvency Resolution Professional / Liquidator in connection with the following matters under the Insolvency and Bankruptcy Code, 2016.</p>
+            <p class="subpage-subtitle">Think Capital acts as the Insolvency Resolution Professional / Liquidator in
+                connection with the following matters under the Insolvency and Bankruptcy Code, 2016.</p>
         </div>
     </section>
 
@@ -235,8 +266,14 @@
                     </table>
                 </div>
             </div>
-            <div id="noAssignmentsNote" style="display:none; text-align:center; color:#6b7280; padding:60px 20px; font-size:15px;">
-                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" style="opacity:0.5; margin-bottom:16px;"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            <div id="noAssignmentsNote"
+                style="display:none; text-align:center; color:#6b7280; padding:60px 20px; font-size:15px;">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"
+                    style="opacity:0.5; margin-bottom:16px;">
+                    <circle cx="12" cy="12" r="10" />
+                    <line x1="12" y1="8" x2="12" y2="12" />
+                    <line x1="12" y1="16" x2="12.01" y2="16" />
+                </svg>
                 <p>No ongoing insolvency assignments at this time.</p>
             </div>
         </div>
@@ -248,8 +285,9 @@
                 <div class="footer-brand">
                     <img src="https://thinkcapital.in/wp-content/uploads/2020/12/think_capital_logo.png"
                         alt="Think Capital" class="footer-logo">
-                    <p>1007-13 Dalamal Tower, Free Press Journal Road, 211, Nariman Point, Mumbai – 400 021. MAH</p>
-                    <p><strong>Phone:</strong> +91 22 6610 0910 – 11</p>
+                    <h4>ThinkCapital</h4>
+                    <p>1012 Dalamal Tower, Free Press Journal Road, 211, Nariman Point, Mumbai – 400 021. MAH</p>
+                    <p><strong>Phone:</strong> +91 22 6610 0910</p>
                     <p><strong>Email:</strong> <a href="mailto:info@thinkcapital.in">info@thinkcapital.in</a></p>
                 </div>
                 <div class="footer-links-group">
@@ -293,7 +331,7 @@
             <polyline points="18 15 12 9 6 15" />
         </svg>
     </button>
-    
+
     <script src="main.js"></script>
 
     <script src="insolvency-data.js"></script>
@@ -318,11 +356,11 @@
                     ? `company.html?id=${encodeURIComponent(a.id)}`
                     : a.externalUrl;
                 const target = isInternal ? '' : ' target="_blank" rel="noopener noreferrer"';
-                
+
                 // Unified CTA for all types
                 const linkText = 'Visit Portal';
                 const arrow = ARROW_EXT;
-                
+
                 const statusType = a.statusType || 'status-external';
 
                 return `
