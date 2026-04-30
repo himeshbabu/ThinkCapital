@@ -2183,6 +2183,83 @@ body.home-page #navbar:not(.scrolled) {
     }
 }
 
+/* ===== SUBPAGE HERO ===== */
+.subpage-hero {
+    background: linear-gradient(135deg, #f8fafc 0%, #eef4fb 100%);
+    padding: 160px 0 80px;
+    position: relative;
+    overflow: hidden;
+}
+
+.subpage-hero .container {
+    position: relative;
+    z-index: 2;
+}
+
+.subpage-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 40%;
+    height: 100%;
+    background: radial-gradient(circle at 70% 30%, rgba(14, 165, 233, 0.05) 0%, transparent 70%);
+    z-index: 1;
+}
+
+.subpage-hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: white;
+    border: 1px solid #e0f2fe;
+    padding: 8px 20px;
+    border-radius: 50px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #0284c7;
+    margin-bottom: 24px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.subpage-hero-title {
+    font-family: var(--font-primary);
+    font-size: clamp(32px, 5vw, 48px);
+    font-weight: 800;
+    color: var(--primary-900);
+    line-height: 1.1;
+    margin-bottom: 20px;
+}
+
+.subpage-hero-text {
+    font-size: 17px;
+    color: var(--neutral-600);
+    max-width: 700px;
+    line-height: 1.7;
+    margin-bottom: 32px;
+}
+
+.subpage-hero-btns {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+    .subpage-hero {
+        padding: 120px 0 60px;
+    }
+    
+    .subpage-hero-text {
+        font-size: 16px;
+    }
+
+    .subpage-hero-btns .btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
 /* ===== TRANSACTION GRID & CARDS ===== */
 .transaction-grid {
     display: grid;
@@ -2350,6 +2427,13 @@ body.home-page #navbar:not(.scrolled) {
 
 @media (max-width: 1200px) {
     .transaction-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 16px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .transaction-grid {
         grid-template-columns: repeat(3, 1fr);
     }
 }
@@ -2357,6 +2441,19 @@ body.home-page #navbar:not(.scrolled) {
 @media (max-width: 768px) {
     .transaction-grid {
         grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+    
+    .transaction-card {
+        min-height: 260px;
+    }
+    
+    .tc-logo-wrap {
+        padding: 16px;
+    }
+    
+    .tc-main-logo {
+        max-height: 60px;
     }
 }
 
@@ -2366,7 +2463,6 @@ body.home-page #navbar:not(.scrolled) {
     }
 
     .transaction-card {
-        padding: 20px;
-        min-height: auto;
+        min-height: 240px;
     }
 }
