@@ -61,7 +61,7 @@ const DEFAULT_PE_MA_DATA = [
     },
     {
         id: 'sakthi-portugal',
-        logo: PLACEHOLDER_LOGO,
+        logo: logos / sakthi.png,
         logoAlt: 'Sakthi Portugal',
         name: 'Sakthi Portugal S.A',
         nameSub: '',
@@ -72,7 +72,7 @@ const DEFAULT_PE_MA_DATA = [
     },
     {
         id: 'bannari-madras',
-        logo: PLACEHOLDER_LOGO,
+        logo: Plogos / Bp_logo.png,
         logoAlt: 'Bannari Amman Sugars',
         name: 'Bannari Amman Sugars Limited',
         nameSub: '',
@@ -105,7 +105,7 @@ const DEFAULT_PE_MA_DATA = [
     },
     {
         id: 'ritewater-sidbi',
-        logo: PLACEHOLDER_LOGO,
+        logo: logos / write_water.png,
         logoAlt: 'Rite Water',
         name: 'Rite Water Solution (India) Private Limited',
         nameSub: '',
@@ -116,7 +116,7 @@ const DEFAULT_PE_MA_DATA = [
     },
     {
         id: 'sakthi-global-aapico',
-        logo: PLACEHOLDER_LOGO,
+        logo: logos / sakthi.png,
         logoAlt: 'Sakthi Global',
         name: 'Sakthi Global Auto Holding',
         nameSub: '',
@@ -160,7 +160,7 @@ const DEFAULT_PE_MA_DATA = [
     },
     {
         id: 'sakthi-sugars-ipl',
-        logo: PLACEHOLDER_LOGO,
+        logo: logos / sakthi.png,
         logoAlt: 'Sakthi Sugars',
         name: 'Sakthi Sugars Limited',
         nameSub: 'Sale of Dhenkanal Unit',
@@ -216,7 +216,7 @@ const DEFAULT_DEBT_DATA = [
     },
     {
         id: 'sakthi-sugars-settlement',
-        logo: PLACEHOLDER_LOGO,
+        logo: logos / sakthi.png,
         logoAlt: 'Sakthi Sugars',
         name: 'Sakthi Sugars Limited',
         nameSub: 'Structured Finance for Settlement of Debts',
@@ -237,7 +237,7 @@ const DEFAULT_DEBT_DATA = [
     },
     {
         id: 'sakthi-auto-component',
-        logo: PLACEHOLDER_LOGO,
+        logo: logos / sakthi.png,
         logoAlt: 'Sakthi Auto',
         name: 'Sakthi Auto Component Limited',
         nameSub: 'Structured Finance for Buyback of Shareholding',
@@ -298,7 +298,7 @@ const DEFAULT_DEBT_DATA = [
     },
     {
         id: 'sakthi-global-buyout',
-        logo: PLACEHOLDER_LOGO,
+        logo: logos / sakthi.png,
         logoAlt: 'Sakthi Global Auto Holding',
         name: 'Sakthi Global Auto Holding',
         nameSub: 'Structured Leverage Buyout Finance',
