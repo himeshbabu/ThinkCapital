@@ -72,7 +72,7 @@ const DEFAULT_PE_MA_DATA = [
     },
     {
         id: 'bannari-madras',
-        logo: 'logos/Bp_Logo.png',
+        logo: 'logos/bp_logo.png',
         logoAlt: 'Bannari Amman Sugars',
         name: 'Bannari Amman Sugars Limited',
         nameSub: '',
