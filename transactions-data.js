@@ -72,7 +72,7 @@ const DEFAULT_PE_MA_DATA = [
     },
     {
         id: 'bannari-madras',
-        logo: 'logos/Bp_logo.png',
+        logo: 'logos/Bp_Logo.png',
         logoAlt: 'Bannari Amman Sugars',
         name: 'Bannari Amman Sugars Limited',
         nameSub: '',
@@ -116,7 +116,7 @@ const DEFAULT_PE_MA_DATA = [
     },
     {
         id: 'sakthi-global-aapico',
-        logo: 'logos/sakthi.png',
+        logo: 'logos/Sakthi_auto.png',
         logoAlt: 'Sakthi Global',
         name: 'Sakthi Global Auto Holding',
         nameSub: '',
