@@ -116,7 +116,7 @@ const DEFAULT_PE_MA_DATA = [
     },
     {
         id: 'sakthi-global-aapico',
-        logo: 'logos/Sakthi_auto.png',
+        logo: 'logos/sakthi_auto.png',
         logoAlt: 'Sakthi Global',
         name: 'Sakthi Global Auto Holding',
         nameSub: '',
