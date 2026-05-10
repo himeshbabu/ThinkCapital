@@ -756,7 +756,8 @@ body.home-page #navbar:not(.scrolled) {
 .stat-label {
     display: block;
     font-size: 17px;
-    color: var(--neutral-500);
+    color: #6db4ed;
+    font-weight: 500;
     margin-top: 6px;
     letter-spacing: 0.5px;
     text-transform: uppercase;

@@ -85,13 +85,13 @@ document.addEventListener('DOMContentLoaded', () => {
     [...navLinks, ...mobileLinks].forEach(link => {
         link.addEventListener('click', (e) => {
             const href = link.getAttribute('href');
-            
+
             // If it's a section link on the same page
             const isHomePage = window.location.pathname === '/' || window.location.pathname.endsWith('index.html') || window.location.pathname.endsWith('/');
             if (href.startsWith('#') || (href.startsWith('index.html#') && isHomePage)) {
                 const targetId = href.includes('#') ? '#' + href.split('#')[1] : href;
                 const target = document.querySelector(targetId);
-                
+
                 if (target) {
                     e.preventDefault();
                     // Close mobile menu if open
@@ -242,16 +242,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ===== SERVICE WINDOWS (Roll Down) =====
     const serviceWindows = document.querySelectorAll('.service-window');
-    
+
     serviceWindows.forEach(windowEl => {
         const header = windowEl.querySelector('.window-header');
-        
+
         header.addEventListener('click', () => {
             const isActive = windowEl.classList.contains('active');
-            
+
             // Optional: Close other windows when one is opened
             serviceWindows.forEach(el => el.classList.remove('active'));
-            
+
             if (!isActive) {
                 windowEl.classList.add('active');
             }
@@ -284,19 +284,52 @@ document.addEventListener('DOMContentLoaded', () => {
     const fundraisingForm = document.getElementById('fundraisingForm');
     const careerForm = document.getElementById('careerForm');
 
+    async function handleFormSubmit(e, form, successMsg) {
+        e.preventDefault();
+        const btn = form.querySelector('button[type="submit"]');
+        const originalBtnText = btn.textContent;
+
+        // Disable button and show loading state
+        btn.disabled = true;
+        btn.textContent = 'Sending...';
+
+        try {
+            const formData = new FormData(form);
+
+            // Add recipients and configuration
+            formData.append('_cc', 'saurabh@thinkcapital.in');
+            formData.append('_subject', `New Submission from ${form.id === 'fundraisingForm' ? 'Startup Fundraising' : 'Careers'} Form`);
+            formData.append('_template', 'table'); // Professional table layout for email
+
+            const response = await fetch(`https://formsubmit.co/ajax/huzefa@thinkcapital.in`, {
+                method: 'POST',
+                body: formData
+            });
+
+            if (response.ok) {
+                showNotification(successMsg);
+                form.reset();
+            } else {
+                throw new Error('Form submission failed');
+            }
+        } catch (error) {
+            console.error('Submission error:', error);
+            showNotification('Something went wrong. Please try again or email us directly at info@thinkcapital.in');
+        } finally {
+            btn.disabled = false;
+            btn.textContent = originalBtnText;
+        }
+    }
+
     if (fundraisingForm) {
         fundraisingForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            showNotification('Pitch submitted successfully! We will review your deck and get back to you.');
-            fundraisingForm.reset();
+            handleFormSubmit(e, fundraisingForm, 'Pitch submitted successfully! We will review your deck and get back to you.');
         });
     }
 
     if (careerForm) {
         careerForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            showNotification('Application submitted successfully! Our HR team will get back to you.');
-            careerForm.reset();
+            handleFormSubmit(e, careerForm, 'Application submitted successfully! Our HR team will get back to you.');
         });
     }
 
